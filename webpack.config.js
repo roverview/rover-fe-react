@@ -19,8 +19,6 @@ let plugins = [
     __DEBUG__: JSON.stringify(!production),
     __API_URL__: JSON.stringify(process.env.API_URL),
     'process.env.NODE_ENV': JSON.stringify(env),
-    'process.env.AUTH0_CLIENTID': JSON.stringify(AUTH0_CLIENTID),
-    'process.env.AUTH0_DOMAIN': JSON.stringify(AUTH0_DOMAIN),
   }),
 ];
 
