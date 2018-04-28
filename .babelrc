@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "env", "react","es2015",
+    "babel-preset-stage-0"
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "react-hot-loader/babel"
+  ]
+}
