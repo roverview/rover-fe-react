@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { manifestFetchRequest } from '../../actions/rover-manifest-actions.js';
 
+import './_rover-manifest.scss';
+
 class RoverManifest extends Component {
   constructor(props) {
     super(props);
@@ -32,12 +34,12 @@ class RoverManifest extends Component {
   render() {
     return (
       <div className='rover-manifest'>
-        <p>Name: {this.state.name}</p>
-        <p>Launch Date: {this.state.launch_date}</p>
-        <p>Landing Date: {this.state.landing_date}</p>
-        <p>Days on Mars: {this.state.max_sol}</p>
-        <p>Last Photo Taken On: {this.state.max_date}</p>
-        <p>Rover Status: {this.state.status}</p>
+        <p><span>Name:</span> {this.state.name}</p>
+        <p><span>Launch Date:</span> {this.state.launch_date}</p>
+        <p><span>Landing Date:</span> {this.state.landing_date}</p>
+        <p><span>Days on Mars:</span> {this.state.max_sol}</p>
+        <p><span>Last Photo Taken On:</span> {this.state.max_date}</p>
+        <p><span>Rover Status:</span> {this.state.status}</p>
       </div>
     );
   }

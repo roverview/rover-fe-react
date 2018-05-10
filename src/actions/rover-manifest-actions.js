@@ -11,12 +11,9 @@ export const manifestFetch = roverManifest => ({
 });
 
 export const manifestFetchRequest = rover => (dispatch, getState) => {
-  getState();
-
   return superagent.get(`${apiManifestUrl}${rover}?api_key=${apiKey}`)
     .then(res => {
       dispatch(manifestFetch(res.body));
-      // console.log(res.body.)
       return res.body.photo_manifest;
     });
 };
