@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import rover from './rover-reducer.js';
+import roverManifest from './rover-manifest-reducer.js';
 
-export default combineReducers({ rover });
+export default combineReducers({ roverManifest });

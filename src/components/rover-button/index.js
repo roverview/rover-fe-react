@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './_rover-button.scss';
 
 export default class RoverButton extends Component {
@@ -10,9 +11,11 @@ export default class RoverButton extends Component {
     return (
       <div className='rover-button'>
         <h3>{this.props.roverName}</h3>
-        <button onClick={this.props.onClick}>
-          <img src={this.props.img} />
-        </button>
+        <Link to={this.props.link}>
+          <button>
+            <img src={this.props.img} />
+          </button>
+        </Link>
       </div>
     );
   }

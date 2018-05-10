@@ -5,9 +5,9 @@ const apiManifestUrl = 'https://api.nasa.gov/mars-photos/api/v1/manifests/';
 const apiKey = 'F7GBoBZ1JBWwwehiwisVuPyIkX8yk8W6rmsDHazU';
 
 // GET mission manifest for each rover from Mars Rover API
-export const manifestFetch = rover => ({
+export const manifestFetch = roverManifest => ({
   type: 'MANIFEST_FETCH',
-  payload: rover,
+  payload: roverManifest,
 });
 
 export const manifestFetchRequest = rover => (dispatch, getState) => {
@@ -16,6 +16,7 @@ export const manifestFetchRequest = rover => (dispatch, getState) => {
   return superagent.get(`${apiManifestUrl}${rover}?api_key=${apiKey}`)
     .then(res => {
       dispatch(manifestFetch(res.body));
-      return res;
+      // console.log(res.body.)
+      return res.body.photo_manifest;
     });
 };
