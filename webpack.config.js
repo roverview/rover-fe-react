@@ -1,76 +1,62 @@
 'use strict';
 
-require('dotenv').config({ path: `${__dirname}/.env` });
-const production = process.env.NODE_ENV === 'production';
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
 
-const {DefinePlugin, EnvironmentPlugin} = require('webpack');
-const HTMLPlugin = require('html-webpack-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
-const UglifyPlugin = require('uglifyjs-webpack-plugin');
-const ExtractPlugin = require('extract-text-webpack-plugin');
-
-const env = process.env.NODE_ENV;
-
-let plugins = [
-  new EnvironmentPlugin(['NODE_ENV']),
-  new ExtractPlugin('bundle-[hash].css'),
-  new HTMLPlugin({template: `${__dirname}/src/index.html`}),
-  new DefinePlugin({
-    __DEBUG__: JSON.stringify(!production),
-    __API_URL__: JSON.stringify(process.env.API_URL),
-    'process.env.NODE_ENV': JSON.stringify(env),
-  }),
-];
-
-if (production)
-  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ]);
+const isHot = path.basename(require.main.filename) === 'webpack-dev-server.js';
 
 module.exports = {
-  plugins,
-  entry: `${__dirname}/src/main.js`,
-  devServer: { 
-    historyApiFallback: true,
+  entry: {
+    app: './src/index.js',
   },
-  devtool: production ? undefined : 'cheap-module-eval-source-map',
-  output: {
-    path: `${__dirname}/build`,
-    filename: 'bundle-[hash].js',
-    publicPath: process.env.CDN_URL,
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+    }),
+    new MiniCSSExtractPlugin({
+      filename: isHot ? 'css/[name].css' : 'css/[name].[contenthash].css',
+      chunkFilename: 'css/[id].css',   
+    }),
+    new CleanWebpackPlugin(['dist']),
+  ],
+  devServer: {
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_module/,
-        loader: 'babel-loader',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
-      },
-      {
-        test: /\.icon.svg$/,
-        loader: 'raw-loader',
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot).*/,
-        exclude: /\.icon.svg/,
+        test: /\.html$/,
         use: [
           {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              name: 'font/[name].[hash].[ext]',
-            },
+            loader: 'html-loader',
+            options: { minimize: true },
           },
         ],
       },
       {
-        test: /\.(jpg|jpeg|gif|png|tiff|svg)$/,
-        exclude: /\.icon.svg$/,
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          MiniCSSExtractPlugin.loader, 
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
               limit: 60000,
               name: 'image/[name].[ext]',

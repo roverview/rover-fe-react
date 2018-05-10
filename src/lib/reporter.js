@@ -11,5 +11,4 @@ const reporter = store => next => action => {
   }
 };
 
-
 export default reporter;

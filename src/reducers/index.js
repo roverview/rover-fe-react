@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-// import token from './user-auth-reducer';
+import rover from './rover-reducer.js';
 
-export default combineReducers({ });
+export default combineReducers({ rover });
