@@ -8,10 +8,6 @@ import './_homepage.scss';
 import RoverButton from './../rover-button/index.js';
 
 class Homepage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className='homepage'>

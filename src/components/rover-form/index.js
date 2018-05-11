@@ -41,13 +41,3 @@ export default class RoverForm extends Component {
     );
   }
 }
-
-// let mapStateToProps = (state) => ({
-//   roverCameras: state.roverCameras,
-// });
-
-// let mapDispatchToProps = (dispatch) => ({
-//   camerasFetch: (rover, date) => dispatch(camerasFetchRequest(rover, date)),
-// });
-
-// export default connect(mapStateToProps, null)(RoverForm);

@@ -64,6 +64,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /react-icons\/(.)*(.js)$/,
+        loader: 'babel-loader',
+      },
     ],
   },
 };
