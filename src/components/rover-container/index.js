@@ -5,7 +5,7 @@ import RoverForm from './../rover-form';
 import RoverManifest from './../rover-manifest';
 import RoverPhoto from './../rover-photo';
 
-export default class RoverContainer extends Component {
+class RoverContainer extends Component {
   render() {
     return (
       <div className='rover-container'>
@@ -14,7 +14,9 @@ export default class RoverContainer extends Component {
           onSubmit={this.props.photosFetch}
         />
         
-        <RoverPhoto />
+        <RoverPhoto 
+          photos={this.props.photos} 
+        />
 
         <RoverManifest 
           rover={this.props.match.params.roverId} 
@@ -23,3 +25,10 @@ export default class RoverContainer extends Component {
     );
   }
 }
+
+
+let mapStateToProps = (state) => ({
+  photos: state.roverPhotos,
+});
+
+export default connect(mapStateToProps, null)(RoverContainer);
