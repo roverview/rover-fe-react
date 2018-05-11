@@ -7,9 +7,10 @@ class RoverSelectForm extends Component {
     super(props);
     this.state = {
       cameras: [],
-      selectedCamera: '',
+      selectedCamera: 'Select a camera',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -17,30 +18,31 @@ class RoverSelectForm extends Component {
       .then(res => {
         return this.setState({
           cameras: this.props.roverCameras,
+          selectedCamera: this.props.roverCameras[0],
         });
-      })
-      .then(() => {
-        if (this.props.roverCameras.length > 0) {
-          return this.setState({
-            selectedCamera: this.state.cameras[0],
-          });
-        }
       });
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.startDate !== nextProps.startDate
-      ? this.props.camerasFetch(this.props.rover, this.props.startDate)
+    this.setState({ selectedCamera: '' });
+    if (this.props.startDate !== nextProps.startDate) {
+      this.setState({ cameras: [], selectedCamera: '' });
+      this.props.camerasFetch(this.props.rover, this.props.startDate)
         .then(res => {
           return this.setState({
             cameras: this.props.roverCameras,
+            selectedCamera: this.props.roverCameras[0],
           });
-        })
-      : null;
+        });
+    } 
   }
 
   handleChange(e) {
     this.setState({ selectedCamera: e.target.value });
+  }
+
+  handleSubmit() {
+    return this.props.photosFetch(this.props.rover, this.props.startDate, this.state.selectedCamera);
   }
 
   render() {
@@ -55,7 +57,7 @@ class RoverSelectForm extends Component {
           }
         </select>
 
-        <button onClick={() => this.props.photosFetch(this.props.rover, this.props.startDate, this.state.selectedCamera)}>Submit</button>
+        <button onClick={this.handleSubmit}>Submit</button>
       </div>
     );
   }

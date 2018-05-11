@@ -20,7 +20,7 @@ export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
   return superagent.get(`${apiPhotoUrl}${rover}/photos?earth_date=${date}&api_key=${apiKey}`)
     .then(res => {
       let cameras = [];
-
+      
       for (let i = 0; i < res.body.photos.length; i++) {
         let fullName = res.body.photos[i].camera.full_name;
         if (cameras.indexOf(fullName) === -1) {
@@ -37,7 +37,7 @@ export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
 // fetch photo
 export const photosFetchRequest = (rover, date, camera) => (dispatch, getState) => {
   let shortCamera = findShortCamera(camera);
-  
+
   return superagent.get(`${apiPhotoUrl}${rover}/photos?earth_date=${date}&camera=${shortCamera}&api_key=${apiKey}`)
     .then(res => {
       dispatch(photosFetch(res.body));
