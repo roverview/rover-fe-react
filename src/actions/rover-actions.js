@@ -1,14 +1,21 @@
 import superagent from 'superagent';
+import { findShortCamera } from './../lib/rover-cameras.js';
 
 const apiPhotoUrl = 'https://api.nasa.gov/mars-photos/api/v1/rovers/';
 const apiKey = 'F7GBoBZ1JBWwwehiwisVuPyIkX8yk8W6rmsDHazU';
 
-// GET cameras for rover
 export const camerasFetch = roverCameras => ({
   type: 'ROVER_CAMERA_FETCH',
   payload: roverCameras,
 });
 
+export const photosFetch = roverPhotos => ({
+  type: 'ROVER_PHOTOS_FETCH',
+  payload: roverPhotos,
+});
+
+
+// GET cameras for rover
 export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
   return superagent.get(`${apiPhotoUrl}${rover}/photos?earth_date=${date}&api_key=${apiKey}`)
     .then(res => {
@@ -27,13 +34,13 @@ export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
     });
 };
 
-
 // fetch photo
-// export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
-//   return superagent.get(`${apiPhotoUrl}${rover}/photos?earth_date=${date}&api_key=${apiKey}`)
-//     .then(res => {
-//       dispatch(camerasFetch(res.body));
-//       console.log(res.body)
-//       return res.body;
-//     });
-// };
+export const photosFetchRequest = (rover, date, camera) => (dispatch, getState) => {
+  let shortCamera = findShortCamera(camera);
+  
+  return superagent.get(`${apiPhotoUrl}${rover}/photos?earth_date=${date}&camera=${shortCamera}&api_key=${apiKey}`)
+    .then(res => {
+      dispatch(photosFetch(res.body));
+      return res.body;
+    });
+};

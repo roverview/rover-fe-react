@@ -7,11 +7,8 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import RoverSelectForm from './../rover-select-form';
-// .format('YYYY-MM-DD')
-// const date = moment().format('YYYY-MM-DD').toString();
-// console.log(date)
 
-class RoverForm extends Component {
+export default class RoverForm extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -45,12 +42,12 @@ class RoverForm extends Component {
   }
 }
 
-let mapStateToProps = (state) => ({
-  roverCameras: state.roverCameras,
-});
+// let mapStateToProps = (state) => ({
+//   roverCameras: state.roverCameras,
+// });
 
-let mapDispatchToProps = (dispatch) => ({
-  camerasFetch: (rover, date) => dispatch(camerasFetchRequest(rover, date)),
-});
+// let mapDispatchToProps = (dispatch) => ({
+//   camerasFetch: (rover, date) => dispatch(camerasFetchRequest(rover, date)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoverForm);
+// export default connect(mapStateToProps, null)(RoverForm);

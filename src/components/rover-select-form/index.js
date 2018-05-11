@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { camerasFetchRequest } from '../../actions/rover-actions.js';
+import { camerasFetchRequest, photosFetchRequest } from '../../actions/rover-actions.js';
 
 class RoverSelectForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cameras: [],
+      selectedCamera: '',
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +18,13 @@ class RoverSelectForm extends Component {
         return this.setState({
           cameras: this.props.roverCameras,
         });
+      })
+      .then(() => {
+        if (this.props.roverCameras.length > 0) {
+          return this.setState({
+            selectedCamera: this.state.cameras[0],
+          });
+        }
       });
   }
 
@@ -30,17 +39,23 @@ class RoverSelectForm extends Component {
       : null;
   }
 
+  handleChange(e) {
+    this.setState({ selectedCamera: e.target.value });
+  }
+
   render() {
     return (
       <div className='rover-select-form'>
-        <select>
+        <select onChange={this.handleChange}>
           {this.state.cameras.length > 0 ? 
-            this.state.cameras.map(camera => {
-              return <option key={camera}>{camera}</option>;
-            })
+            this.state.cameras.map(camera => 
+              <option value={camera} key={camera}>{camera}</option>
+            )
             : <option disabled defaultValue='No available cameras'> No available cameras </option>
           }
         </select>
+
+        <button onClick={() => this.props.photosFetch(this.props.rover, this.props.startDate, this.state.selectedCamera)}>Submit</button>
       </div>
     );
   }
@@ -52,6 +67,7 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = (dispatch) => ({
   camerasFetch: (rover, date) => dispatch(camerasFetchRequest(rover, date)),
+  photosFetch: (rover, date, camera) => dispatch(photosFetchRequest(rover, date, camera)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoverSelectForm);
