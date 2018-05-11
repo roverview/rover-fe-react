@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MdNavigateNext from 'react-icons/lib/md/navigate-next';
+import MdNavigateBefore from 'react-icons/lib/md/navigate-before';
 import './_rover-photo.scss';
 
 export default class RoverPhoto extends Component {
@@ -12,7 +13,8 @@ export default class RoverPhoto extends Component {
       currentPhoto: '',
       index: 0,
     };
-    this.clickThrough = this.clickThrough.bind(this);
+    this.clickForward = this.clickForward.bind(this);
+    this.clickBackward = this.clickBackward.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
@@ -27,19 +29,38 @@ export default class RoverPhoto extends Component {
     }
   }
 
-  clickThrough() {
+  clickForward() {
+    this.setState({
+      currentPhoto: this.state.photos[this.state.index + 1],
+      index: this.state.index++,
+    });
     console.log(this.state)
+
+  }
+
+  clickBackward() {
+    console.log(this.state)
+    this.setState({
+      currentPhoto: this.state.photos[this.state.index - 1],
+      index: this.state.index-- || 0,
+    });
+    console.log(this.state)
+
   }
 
   render() {
     return (
       <div className='rover-photo'>
+        {this.state.photos.length > 1
+          ? <MdNavigateBefore onClick={this.clickBackward} />
+          : null}
+
         {this.state.photos.length > 0
           ? <img src={this.state.currentPhoto.img_src} />
           : null}
 
         {this.state.photos.length > 1
-          ? <MdNavigateNext onClick={this.clickThrough} />
+          ? <MdNavigateNext onClick={this.clickForward} />
           : null}
       </div>
     );
