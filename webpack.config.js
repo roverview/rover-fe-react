@@ -68,6 +68,15 @@ module.exports = {
         test: /react-icons\/(.)*(.js)$/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 50000,
+          },
+        },
+      },      
     ],
   },
 };

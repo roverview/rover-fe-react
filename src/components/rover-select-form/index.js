@@ -60,7 +60,7 @@ class RoverSelectForm extends Component {
           }
         </select>
 
-        <Button onClick={this.handleSubmit}>Submit</Button>
+        <Button onClick={this.handleSubmit} style={style.button}>Submit</Button>
       </div>
     );
   }

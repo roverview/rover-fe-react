@@ -2,13 +2,16 @@ export const style = {
   root: {
     marginTop: '20px',
     flexGrow: 1,
-    justify: 'center',
-    alignItems: 'center',
-    padding: '10px',
-    margin: '5%',
+    textAlign: 'center',
+    padding: '20px 0 20px 0',
+    background: '#999',
+    width: '100%',
+    borderRadius: 0,
+  },
+  header: {
+    marginBottom: '10px',
   },
   span: {
     fontWeight: 'bold',
-    marginRight: '3px',
   },
 };

@@ -1,13 +1,19 @@
 export const style = {
   root: {
-    marginTop: '20px',
+    marginTop: '10px',
     flexGrow: 1,
     justify: 'center',
     alignItems: 'center',
-    margin: '5%',
+    textAlign: 'center',
   },
   input: {
-    width: '90%',
+    margin: '0 auto',
+    width: '80%',
+    padding: '5px',
+    display: 'block',
+  },
+  button: {
+    margin: '0 auto',
     display: 'block',
   },
 };

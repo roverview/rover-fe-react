@@ -1,16 +1,20 @@
 export const style = {
   root: {
     background: '#444',
-    border: '1px solid #999',
-    marginTop: '20px',
+    borderTop: '1px solid #999',
+    borderBottom: '1px solid #999',
+    margin: '20px 0 20px 0',
+    padding: '20px 0 20px 0',
     flexGrow: 1,
     justify: 'center',
     textAlign: 'center',
-    padding: '10px',
-    margin: '5%',
   },
   input: {
     width: '90%',
     display: 'block',
+  },
+  text: {
+    marginTop: '20px',
+    marginBottom: '10px',
   },
 };

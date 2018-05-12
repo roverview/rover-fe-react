@@ -18,8 +18,8 @@ export default class NavBar extends Component {
     return (
       <AppBar position='static' style={style.root}>
         <Toolbar>
-          <Typography style={style.title}>
-            Title
+          <Typography style={style.title} variant='display1'>
+            RoverView
           </Typography>
           <Link to='/'>
             <Button style={style.button}>

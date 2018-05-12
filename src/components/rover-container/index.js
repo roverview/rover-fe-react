@@ -8,7 +8,7 @@ import { Paper } from 'material-ui';
 
 import { style } from './rover-container-style.js';
 
-class RoverContainer extends Component {
+export default class RoverContainer extends Component {
   render() {
     return (
       <div style={style.root}>
@@ -17,18 +17,8 @@ class RoverContainer extends Component {
           onSubmit={this.props.photosFetch}
         />
         
-        <RoverPhoto 
-          photos={this.props.photos}
-        />
-
         <RoverManifest rover={this.props.match.params.roverId} />
       </div>
     );
   }
 }
-
-let mapStateToProps = (state) => ({
-  photos: state.roverPhotos,
-});
-
-export default connect(mapStateToProps, null)(RoverContainer);

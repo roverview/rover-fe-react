@@ -42,28 +42,26 @@ class RoverManifest extends Component {
 
   render() {
     return (
-      <Card style={style.root}>
-        <CardContent>
-          <Typography variant='display3'>
-            <span style={style.span}>Name:</span> {this.state.name}
-          </Typography>
-          <Typography variant='display3'>
-            <span style={style.span}>Launch Date:</span> {this.state.launch_date}
-          </Typography>
-          <Typography variant='display3'>
-            <span style={style.span}>Landing Date:</span> {this.state.landing_date}
-          </Typography>
-          <Typography variant='display3'>
-            <span style={style.span}>Days on Mars:</span> {this.state.max_sol}
-          </Typography>
-          <Typography variant='display3'>
-            <span style={style.span}>Last Photo Taken On:</span> {this.state.max_date}
-          </Typography>
-          <Typography variant='display3'>
-            <span style={style.span}>Rover Status:</span> {this.state.status}
-          </Typography>
-        </CardContent>
-      </Card>
+      <div style={style.root}>
+        <Typography variant='display4' style={style.header}>
+          {this.state.name} Mission Manifest
+        </Typography>
+        <Typography variant='display3'>
+          <span style={style.span}>Launch Date:</span> {this.state.launch_date}
+        </Typography>
+        <Typography variant='display3'>
+          <span style={style.span}>Landing Date:</span> {this.state.landing_date}
+        </Typography>
+        <Typography variant='display3'>
+          <span style={style.span}>Days on Mars:</span> {this.state.max_sol}
+        </Typography>
+        <Typography variant='display3'>
+          <span style={style.span}>Last Photo Taken On:</span> {this.state.max_date}
+        </Typography>
+        <Typography variant='display3'>
+          <span style={style.span}>Rover Status:</span> {this.state.status}
+        </Typography>
+      </div>
     );
   }
 }
