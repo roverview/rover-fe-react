@@ -9,22 +9,7 @@ import { withStyles } from 'material-ui';
 import { grey900 } from 'material-ui/colors/grey';
 import { Typography } from 'material-ui';
 
-import Homepage from '../homepage';
-
-const style = {
-  root: {
-    flexGrow: 1,
-    background: '#000',
-    boxShadow: 'none',
-  },
-  title: {
-    flex: 1,
-    color: '#FFF',
-  },
-  button: {
-    color: '#FFF',
-  },
-};
+import { style } from './navbar-style.js';
 
 export default class NavBar extends Component {
   render() {

@@ -7,6 +7,8 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import RoverSelectForm from './../rover-select-form';
+import { style } from './rover-form-style.js';
+import { Card } from 'material-ui';
 
 export default class RoverForm extends Component {
   constructor (props) {
@@ -25,7 +27,7 @@ export default class RoverForm extends Component {
 
   render() {
     return (
-      <div className='rover-form'>
+      <Card style={style.root}>
         <h3>Pick a date to view:</h3>
         <DatePicker
           selected={this.state.startDate}
@@ -37,7 +39,7 @@ export default class RoverForm extends Component {
           rover={this.props.rover} 
           startDate={moment(this.state.startDate).format('YYYY-MM-DD')}
         />
-      </div>
+      </Card>
     );
   }
 }

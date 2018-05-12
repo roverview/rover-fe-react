@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { manifestFetchRequest } from '../../actions/rover-manifest-actions.js';
 
-import './_rover-manifest.scss';
+import { style } from './rover-manifest-style.js';
+import { Card } from 'material-ui';
 
 class RoverManifest extends Component {
   constructor(props) {
@@ -33,14 +34,14 @@ class RoverManifest extends Component {
 
   render() {
     return (
-      <div className='rover-manifest'>
+      <Card style={style.root}>
         <p><span>Name:</span> {this.state.name}</p>
         <p><span>Launch Date:</span> {this.state.launch_date}</p>
         <p><span>Landing Date:</span> {this.state.landing_date}</p>
         <p><span>Days on Mars:</span> {this.state.max_sol}</p>
         <p><span>Last Photo Taken On:</span> {this.state.max_date}</p>
         <p><span>Rover Status:</span> {this.state.status}</p>
-      </div>
+      </Card>
     );
   }
 }

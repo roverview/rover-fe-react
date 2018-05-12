@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import IoHeart from 'react-icons/lib/io/heart';
 import MdNavigateNext from 'react-icons/lib/md/navigate-next';
 import MdNavigateBefore from 'react-icons/lib/md/navigate-before';
-import './_rover-photo.scss';
+import { Card, CardMedia, CardActions } from 'material-ui';
+
+import { style } from './rover-photo-style.js';
 
 export default class RoverPhoto extends Component {
   constructor(props) {
@@ -56,19 +59,27 @@ export default class RoverPhoto extends Component {
 
   render() {
     return (
-      <div className='rover-photo'>
-        {this.state.photos.length > 1 && this.state.index !== 0
-          ? <MdNavigateBefore onClick={this.clickBackward} />
-          : null}
+      <Card style={style.root}>
+        <CardMedia style={style.media}>
+          {this.state.photos.length > 0
+            ? <img src={this.state.currentPhoto.img_src} style={style.img}/>
+            : null}
+        </CardMedia>
 
-        {this.state.photos.length > 0
-          ? <img src={this.state.currentPhoto.img_src} />
-          : null}
+        <CardActions style={style.actions}>
+          {this.state.photos.length > 1 && this.state.index !== 0
+            ? <MdNavigateBefore onClick={this.clickBackward} style={style.activeAction} />
+            : <MdNavigateBefore style={style.inactiveAction} />}
 
-        {this.state.photos.length > 1 && !this.state.lastPhoto
-          ? <MdNavigateNext onClick={this.clickForward} />
-          : null}
-      </div>
+          {/* {this.state.photos.length > 1 && this.state.index !== 0
+            ? <IoHeart style={style.activeAction} />
+            : <IoHeart style={style.inactiveAction} />} */}
+
+          {this.state.photos.length > 1 && !this.state.lastPhoto
+            ? <MdNavigateNext onClick={this.clickForward} style={style.activeAction} />
+            : <MdNavigateNext style={style.inactiveAction} />}
+        </CardActions>
+      </Card>
     );
   }
 }
