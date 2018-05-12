@@ -6,29 +6,17 @@ import appCreateStore from './lib/app-create-store.js';
 import './style/main.scss';
 import App from './components/app';
 
-import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
-import { darkBlack, grey600 } from 'material-ui/colors/grey';
+import { muiTheme } from './style/material-ui.js';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 const store = appCreateStore();
-
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: [
-      'Avenir',
-    ],
-  },
-  palette: {
-    primary: darkBlack,
-    secondary: grey600,
-  },
-});
 
 class Root extends Component {
   render() {
     return(
       <main>
         <Provider store={store}>
-          <MuiThemeProvider theme={theme}>
+          <MuiThemeProvider theme={muiTheme}>
             <App />
           </MuiThemeProvider>
         </Provider>

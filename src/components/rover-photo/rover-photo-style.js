@@ -3,14 +3,13 @@ export const style = {
     flexGrow: 1,
     justify: 'center',
     alignItems: 'center',
-    padding: '10px',
-    maxWidth: '500px',
+    margin: '5%',
   },
   media: {
     textAlign: 'center',
   },
   img: {
-    maxWidth: '400px',
+    maxWidth: '90%',
   },
   actions: {
     justifyContent: 'center',

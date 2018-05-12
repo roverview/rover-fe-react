@@ -1,12 +1,13 @@
 export const style = {
   root: {
+    marginTop: '20px',
     flexGrow: 1,
-    background: '#000',
-    padding: '20px',
     justify: 'center',
     alignItems: 'center',
+    margin: '5%',
   },
-  paper: {
-    background: '#000',
+  input: {
+    width: '90%',
+    display: 'block',
   },
 };

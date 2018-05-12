@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import RoverSelectForm from './../rover-select-form';
 import { style } from './rover-form-style.js';
 import { Card } from 'material-ui';
+import { Typography } from 'material-ui';
 
 export default class RoverForm extends Component {
   constructor (props) {
@@ -28,13 +29,19 @@ export default class RoverForm extends Component {
   render() {
     return (
       <Card style={style.root}>
-        <h3>Pick a date to view:</h3>
+        <Typography variant='display2'>
+          Pick a date to view:
+        </Typography>
+
         <DatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
         />
-        
-        <h3>Select a camera:</h3>
+
+        <Typography variant='display2'>
+          Select a camera:
+        </Typography>
+
         <RoverSelectForm 
           rover={this.props.rover} 
           startDate={moment(this.state.startDate).format('YYYY-MM-DD')}

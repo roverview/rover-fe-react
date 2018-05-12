@@ -11,16 +11,18 @@ import { style } from './rover-container-style.js';
 class RoverContainer extends Component {
   render() {
     return (
-      <Paper style={style.root} elevation={0}>
+      <div style={style.root}>
         <RoverForm 
           rover={this.props.match.params.roverId} 
           onSubmit={this.props.photosFetch}
         />
         
-        <RoverPhoto photos={this.props.photos} />
+        <RoverPhoto 
+          photos={this.props.photos}
+        />
 
         <RoverManifest rover={this.props.match.params.roverId} />
-      </Paper>
+      </div>
     );
   }
 }

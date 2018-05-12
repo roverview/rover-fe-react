@@ -5,6 +5,10 @@ export const style = {
     justify: 'center',
     alignItems: 'center',
     padding: '10px',
-    maxWidth: '500px',
+    margin: '5%',
+  },
+  span: {
+    fontWeight: 'bold',
+    marginRight: '3px',
   },
 };

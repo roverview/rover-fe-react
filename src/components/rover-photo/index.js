@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import IoHeart from 'react-icons/lib/io/heart';
 import MdNavigateNext from 'react-icons/lib/md/navigate-next';
 import MdNavigateBefore from 'react-icons/lib/md/navigate-before';
-import { Card, CardMedia, CardActions } from 'material-ui';
+import { Card, CardMedia, CardActions, CardHeader } from 'material-ui';
 
 import { style } from './rover-photo-style.js';
 
@@ -59,27 +59,36 @@ export default class RoverPhoto extends Component {
 
   render() {
     return (
-      <Card style={style.root}>
-        <CardMedia style={style.media}>
-          {this.state.photos.length > 0
-            ? <img src={this.state.currentPhoto.img_src} style={style.img}/>
-            : null}
-        </CardMedia>
+      <div className='rover-photo'>
+        {this.state.currentPhoto
+          ? <Card style={style.root}>
+            <CardHeader
+              title={this.state.currentPhoto.camera.full_name}
+              subheader={new Date(this.state.currentPhoto.earth_date).toDateString()}
+            />
+        
+            <CardMedia style={style.media}>
+              {this.state.photos.length > 0
+                ? <img src={this.state.currentPhoto.img_src} style={style.img}/>
+                : null}
+            </CardMedia>
 
-        <CardActions style={style.actions}>
-          {this.state.photos.length > 1 && this.state.index !== 0
-            ? <MdNavigateBefore onClick={this.clickBackward} style={style.activeAction} />
-            : <MdNavigateBefore style={style.inactiveAction} />}
+            <CardActions style={style.actions}>
+              {this.state.photos.length > 1 && this.state.index !== 0
+                ? <MdNavigateBefore onClick={this.clickBackward} style={style.activeAction} />
+                : <MdNavigateBefore style={style.inactiveAction} />}
 
-          {/* {this.state.photos.length > 1 && this.state.index !== 0
-            ? <IoHeart style={style.activeAction} />
-            : <IoHeart style={style.inactiveAction} />} */}
+              {/* {this.state.photos.length > 1 && this.state.index !== 0
+                ? <IoHeart style={style.activeAction} />
+                : <IoHeart style={style.inactiveAction} />} */}
 
-          {this.state.photos.length > 1 && !this.state.lastPhoto
-            ? <MdNavigateNext onClick={this.clickForward} style={style.activeAction} />
-            : <MdNavigateNext style={style.inactiveAction} />}
-        </CardActions>
-      </Card>
+              {this.state.photos.length > 1 && !this.state.lastPhoto
+                ? <MdNavigateNext onClick={this.clickForward} style={style.activeAction} />
+                : <MdNavigateNext style={style.inactiveAction} />}
+            </CardActions>
+          </Card>
+          : null }
+      </div>
     );
   }
 }
