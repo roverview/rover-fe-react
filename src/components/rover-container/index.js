@@ -7,6 +7,7 @@ import RoverPhoto from './../rover-photo';
 
 class RoverContainer extends Component {
   render() {
+    // console.log(this.props.photos)
     return (
       <div className='rover-container'>
         <RoverForm 
