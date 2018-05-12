@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+// import { muiTheme } from './../../style/material-ui.js';
+
 import NavBar from './../navbar';
 import Homepage from './../homepage';
 import RoverContainer from './../rover-container';
@@ -18,3 +20,5 @@ export default class App extends Component {
     );
   }
 }
+
+// export default muiTheme()(App);

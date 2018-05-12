@@ -6,14 +6,31 @@ import appCreateStore from './lib/app-create-store.js';
 import './style/main.scss';
 import App from './components/app';
 
-let store = appCreateStore();
+import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import { darkBlack, grey600 } from 'material-ui/colors/grey';
+
+const store = appCreateStore();
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Avenir',
+    ],
+  },
+  palette: {
+    primary: darkBlack,
+    secondary: grey600,
+  },
+});
 
 class Root extends Component {
   render() {
     return(
       <main>
         <Provider store={store}>
-          <App />
+          <MuiThemeProvider theme={theme}>
+            <App />
+          </MuiThemeProvider>
         </Provider>
       </main>
     );
