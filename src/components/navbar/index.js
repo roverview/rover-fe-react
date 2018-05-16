@@ -26,6 +26,9 @@ export default class NavBar extends Component {
               Home
             </Button>
           </Link>
+          <Button style={style.button}>
+            About Us
+          </Button>
         </Toolbar>
       </AppBar>
     );

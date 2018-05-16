@@ -8,13 +8,38 @@ import './_homepage.scss';
 import RoverButton from './../rover-button/index.js';
 
 class Homepage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: 0,
+      height: 0,
+    };
+    this.setDimensions = this.setDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.setDimensions();
+    window.addEventListener('resize', this.setDimensions);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setDimensions);
+  }
+  
+  setDimensions() {
+    this.setState({ 
+      width: window.innerWidth, 
+      height: window.innerHeight,
+    });
+  }
+
   render() {
     return (
       <div className='homepage'>
-        <img 
+        {/* <img
           src='./../../assets/images/rover-mars2020.jpg' 
           className='rover-img'
-        />
+        /> */}
 
         <RoverButton
           roverName='Curiosity'

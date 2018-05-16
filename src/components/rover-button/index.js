@@ -6,9 +6,11 @@ export default class RoverButton extends Component {
   render() {
     return (
       <div className='rover-button'>
-        <h3>{this.props.roverName}</h3>
         <Link to={this.props.link}>
-          <img src={this.props.img} />
+          <div className='rover-button-img'>
+            <h3>{this.props.roverName}</h3>
+            <img src={this.props.img} />
+          </div>
         </Link>
       </div>
     );

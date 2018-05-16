@@ -1,8 +1,50 @@
 .rover-button {
+  display: inline-block;
   text-align: center;
+  width: 50%;
+  position: relative;
   
+  .rover-button-img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  h3 {
+    display: none;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 30%;
+  }
+
   img {
-    height: 300px;
-    width: 300px;
+    width: 90%;
+    border-radius: 2%;
+    background-color: #000;
+    transition: 0.4s;
+  }
+
+  .rover-button-img:hover {
+    img {
+      opacity: .3;
+
+    }
+    h3 {
+      display: block;
+      position: absolute;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+
+    .rover-button-img {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }  
   }
 }

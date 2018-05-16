@@ -3,6 +3,7 @@ export const style = {
     flexGrow: 1,
     background: '#000',
     boxShadow: 'none',
+    paddingTop: '7px',
   },
   title: {
     flex: 1,
