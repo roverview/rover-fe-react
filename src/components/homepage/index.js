@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { manifestFetchRequest } from '../../actions/rover-manifest-actions.js';
 
 import './_homepage.scss';
-
 import RoverButton from './../rover-button/index.js';
 
 class Homepage extends Component {
