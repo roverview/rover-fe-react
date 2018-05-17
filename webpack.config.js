@@ -8,7 +8,7 @@ const path = require('path');
 const isHot = path.basename(require.main.filename) === 'webpack-dev-server.js';
 
 module.exports = {
-  entry: './src/index.js',
+  entry: `${__dirname}/src/index.js`,
   output: {
     path: `${__dirname}/dist`,
     filename: 'bundle.js',
