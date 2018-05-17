@@ -6,8 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const PROD = process.env.NODE_ENV === 'production';
 
-// const useMiddleware = PROD ? applyMiddleware(thunk) : composeWithDevTools(applyMiddleware(thunk, reporter));
-const useMiddleware = composeWithDevTools(applyMiddleware(thunk, reporter));
+const useMiddleware = PROD ? applyMiddleware(thunk) : composeWithDevTools(applyMiddleware(thunk, reporter));
+// const useMiddleware = composeWithDevTools(applyMiddleware(thunk, reporter));
 
 const appCreateStore = () => (
   createStore(reducer, useMiddleware)

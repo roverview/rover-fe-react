@@ -8,9 +8,6 @@ const path = require('path');
 const isHot = path.basename(require.main.filename) === 'webpack-dev-server.js';
 
 module.exports = {
-  entry: {
-    app: './src/index.js',
-  },
   plugins: [
     new HTMLWebpackPlugin({
       template: './src/index.html',
