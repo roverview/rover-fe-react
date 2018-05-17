@@ -10,8 +10,8 @@ const isHot = path.basename(require.main.filename) === 'webpack-dev-server.js';
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: `${__dirname}/dist`,
+    filename: 'bundle.js',
   },
   plugins: [
     new HTMLWebpackPlugin({
