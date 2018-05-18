@@ -9,6 +9,12 @@ const ExtractWebpackPlugin = require('extract-text-webpack-plugin');
 const env = process.env.NODE_ENV;
 const production = process.env.NODE_ENV === 'production';
 
+let plugins = [
+  new EnvironmentPlugin(['NODE_ENV']),
+  new ExtractWebpackPlugin('bundle-[hash].css'),
+  new HTMLWebpackPlugin({template: `${__dirname}/src/index.html`}),
+];
+
 if (production)
   plugins = plugins.concat([ new CleanWebpackPlugin(), new UglifyWebpackPlugin() ]);
 
@@ -19,11 +25,7 @@ module.exports = {
     filename: 'bundle-[hash].js',
     publicPath: process.env.CDN_URL,
   },
-  plugins: [
-    new EnvironmentPlugin(['NODE_ENV']),
-    new ExtractWebpackPlugin('bundle-[hash].css'),
-    new HTMLWebpackPlugin({template: `${__dirname}/src/index.html`}),
-  ],
+  plugins,
   devServer: {
     historyApiFallback: true,
   },
