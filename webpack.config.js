@@ -1,5 +1,8 @@
 'use strict';
 
+require('dotenv').config({ path: `${__dirname}/.env` });
+const production = process.env.NODE_ENV === 'production';
+
 const { DefinePlugin, EnvironmentPlugin } = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -7,29 +10,33 @@ const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const ExtractWebpackPlugin = require('extract-text-webpack-plugin');
 
 const env = process.env.NODE_ENV;
-const production = process.env.NODE_ENV === 'production';
 
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractWebpackPlugin('bundle-[hash].css'),
   new HTMLWebpackPlugin({template: `${__dirname}/src/index.html`}),
+  new DefinePlugin({
+    __DEBUG__: JSON.stringify(!production),
+    __API_URL__: JSON.stringify(process.env.API_URL),
+    'process.env.NODE_ENV': JSON.stringify(env),
+  }),
 ];
 
 if (production)
   plugins = plugins.concat([ new CleanWebpackPlugin(), new UglifyWebpackPlugin() ]);
 
 module.exports = {
-  entry: `${__dirname}/src/index.js`,
-  output: {
-    path: `${__dirname}/build`,
-    filename: 'bundle-[hash].js',
-    publicPath: process.env.CDN_URL,
-  },
   plugins,
+  entry: `${__dirname}/src/index.js`,
   devServer: {
     historyApiFallback: true,
   },
   devtool: production ? undefined : 'cheap-module-eval-source-map',
+  output: {
+    path: `${__dirname}/build`,
+    filename: 'bundle.js',
+    publicPath: process.env.CDN_URL,
+  },
   module: {
     rules: [
       {
@@ -37,24 +44,25 @@ module.exports = {
         exclude: /node_module/,
         loader: 'babel-loader',
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: { minimize: true },
-          },
-        ],
-      },
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: 'html-loader',
+      //       options: { minimize: true },
+      //     },
+      //   ],
+      // },
       {
         test: /\.(css|scss)$/,
         loader: 'style-loader!css-loader!sass-loader',
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(jpg|jpeg|gif|png|tiff|svg)$/,
+        exclude: /\.icon.svg$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
               limit: 60000,
               name: 'image/[name].[ext]',
