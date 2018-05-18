@@ -1,40 +1,39 @@
 'use strict';
 
+const { DefinePlugin, EnvironmentPlugin } = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const path = require('path');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
+const ExtractWebpackPlugin = require('extract-text-webpack-plugin');
 
-const isHot = path.basename(require.main.filename) === 'webpack-dev-server.js';
+const env = process.env.NODE_ENV;
+const production = process.env.NODE_ENV === 'production';
+
+if (production)
+  plugins = plugins.concat([ new CleanWebpackPlugin(), new UglifyWebpackPlugin() ]);
 
 module.exports = {
   entry: `${__dirname}/src/index.js`,
   output: {
-    path: `${__dirname}/dist`,
-    filename: 'bundle.js',
+    path: `${__dirname}/build`,
+    filename: 'bundle-[hash].js',
+    publicPath: process.env.CDN_URL,
   },
   plugins: [
-    new HTMLWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    }),
-    new MiniCSSExtractPlugin({
-      filename: isHot ? 'css/[name].css' : 'css/[name].[contenthash].css',
-      chunkFilename: 'css/[id].css',   
-    }),
-    new CleanWebpackPlugin(['dist']),
+    new EnvironmentPlugin(['NODE_ENV']),
+    new ExtractWebpackPlugin('bundle-[hash].css'),
+    new HTMLWebpackPlugin({template: `${__dirname}/src/index.html`}),
   ],
   devServer: {
     historyApiFallback: true,
   },
+  devtool: production ? undefined : 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.js$/,
+        exclude: /node_module/,
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,
@@ -47,12 +46,7 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: [
-          'style-loader',
-          MiniCSSExtractPlugin.loader, 
-          'css-loader',
-          'sass-loader',
-        ],
+        loader: 'style-loader!css-loader!sass-loader',
       },
       {
         test: /\.(png|jpg|gif)$/,
