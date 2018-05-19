@@ -44,15 +44,6 @@ module.exports = {
         exclude: /node_module/,
         loader: 'babel-loader',
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: 'html-loader',
-      //       options: { minimize: true },
-      //     },
-      //   ],
-      // },
       {
         test: /\.(css|scss)$/,
         loader: 'style-loader!css-loader!sass-loader',

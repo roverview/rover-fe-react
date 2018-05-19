@@ -35,21 +35,21 @@ class Homepage extends Component {
   render() {
     return (
       <div className='homepage'>
-        {/* <img
-          src='./../../assets/images/rover-mars2020.jpg' 
+        <img
+          src='../../../assets/images/PIA20760.jpg' 
           className='rover-img'
-        /> */}
+        />
 
         <RoverButton
           roverName='Curiosity'
-          img='http://www.roverview.net/images/curiosity.jpg'
+          img='../.../../assets/images/curiosity-sq.jpg'
           onClick={() => this.props.manifestFetch('curiosity')}
           link='/rover/curiosity'
         />
         
         <RoverButton
           roverName='Opportunity'
-          img='http://www.roverview.net/images/rover2_400%20(1).jpg'
+          img='../.../../assets/images/opportunity-sq.jpg'
           onClick={() => this.props.manifestFetch('opportunity')}
           link='/rover/opportunity'
         />
