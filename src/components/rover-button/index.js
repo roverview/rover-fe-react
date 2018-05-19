@@ -8,8 +8,12 @@ export default class RoverButton extends Component {
       <div className='rover-button'>
         <Link to={this.props.link}>
           <div className='rover-button-img'>
-            <h3>{this.props.roverName}</h3>
-            <img src={this.props.img} />
+            <div class='col-1'></div>
+            <div class='col-2'>
+              <h3>{this.props.roverName}</h3>
+            </div>
+            <div class='col-3'></div>
+            <img className='button-img' src={this.props.img} />
           </div>
         </Link>
       </div>

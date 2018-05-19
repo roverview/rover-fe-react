@@ -5,6 +5,7 @@ import { manifestFetchRequest } from '../../actions/rover-manifest-actions.js';
 
 import './_homepage.scss';
 import RoverButton from './../rover-button/index.js';
+import { Typography } from 'material-ui';
 
 class Homepage extends Component {
   constructor(props) {
@@ -36,9 +37,11 @@ class Homepage extends Component {
     return (
       <div className='homepage'>
         <img
-          src='../../../assets/images/PIA20760.jpg' 
+          src='../../../assets/images/rover-header.jpg' 
           className='rover-img'
         />
+
+        <h2>Select A Rover</h2>
 
         <RoverButton
           roverName='Curiosity'

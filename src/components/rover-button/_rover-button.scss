@@ -1,38 +1,59 @@
 .rover-button {
+  margin-top: 2%;
   display: inline-block;
-  text-align: center;
   width: 100%;
   position: relative;
   
   .rover-button-img {
     height: 100%;
     width: 100%;
-    // position: absolute;
-  }
-
-  h3 {
-    display: none;
-    color: #fff;
-    position: absolute;
-    margin: 0 auto;
-    // padding: 30%;
-  }
-
-  img {
-    width: 100%;
-    // border-radius: 2%;
+    position: relative;
     background-color: #000;
+  }
+
+  .col-1, .col-3 {
+    width: 10%;
+    height: 100%;
+  }
+
+  .col-1 {
+    float: left;
+  }
+
+  .col-2 {
+    width: 70%;
+    height: 100%;
+    text-align: center;
+
+    h3 {
+      width: 100%;
+      color: #FFF;
+      position: absolute;
+      margin: 40% auto;
+      font-family: Orbitron;
+      font-size: 2em;
+      transition: 0.4s;
+    }
+  }
+
+  .col-3 {
+    float: right;
+  }  
+
+  .button-img {
+    width: 100%;
     transition: 0.4s;
+    opacity: .3;
   }
 
   .rover-button-img:hover {
     img {
-      opacity: .3;
-
+      opacity: 1;
+      transition: 0.4s;
     }
+
     h3 {
-      display: block;
-      position: absolute;
+      display: none;
     }
   }
 
