@@ -37,7 +37,7 @@ class Homepage extends Component {
     return (
       <div className='homepage'>
         <img
-          src='../../../assets/images/rover-header.jpg' 
+          src='https://raw.githubusercontent.com/roverview/rover-fe-react/master/assets/images/rover-header.jpg' 
           className='rover-img'
         />
 
@@ -45,7 +45,7 @@ class Homepage extends Component {
 
         <RoverButton
           roverName='Curiosity'
-          img='../.../../assets/images/curiosity-sq.jpg'
+          img='https://raw.githubusercontent.com/roverview/rover-fe-react/master/assets/images/curiosity-sq.jpg'
           onClick={() => this.props.manifestFetch('curiosity')}
           link='/rover/curiosity'
           id='rover1'
@@ -53,7 +53,7 @@ class Homepage extends Component {
         
         <RoverButton
           roverName='Opportunity'
-          img='../.../../assets/images/curiosity-sq.jpg'
+          img='https://raw.githubusercontent.com/roverview/rover-fe-react/master/assets/images/curiosity-sq.jpg'
           onClick={() => this.props.manifestFetch('opportunity')}
           link='/rover/opportunity'
           id='rover2'
