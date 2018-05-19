@@ -48,13 +48,15 @@ class Homepage extends Component {
           img='../.../../assets/images/curiosity-sq.jpg'
           onClick={() => this.props.manifestFetch('curiosity')}
           link='/rover/curiosity'
+          id='rover1'
         />
         
         <RoverButton
           roverName='Opportunity'
-          img='../.../../assets/images/opportunity-sq.jpg'
+          img='../.../../assets/images/curiosity-sq.jpg'
           onClick={() => this.props.manifestFetch('opportunity')}
           link='/rover/opportunity'
+          id='rover2'
         />
       </div>
     );

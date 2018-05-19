@@ -5,8 +5,6 @@
   position: relative;
   
   .rover-button-img {
-    height: 100%;
-    width: 100%;
     position: relative;
     background-color: #000;
   }
@@ -27,9 +25,9 @@
 
     h3 {
       width: 100%;
-      color: #FFF;
+      color: #000;
       position: absolute;
-      margin: 40% auto;
+      margin: 10% auto;
       font-family: Orbitron;
       font-size: 2em;
       transition: 0.4s;
@@ -43,29 +41,37 @@
   .button-img {
     width: 100%;
     transition: 0.4s;
-    opacity: .3;
   }
 
   .rover-button-img:hover {
     img {
-      opacity: 1;
+      opacity: .3;
       transition: 0.4s;
     }
 
     h3 {
-      display: none;
+      margin: 45% auto;
+      position: absolute;
+      color: #FFF;
     }
   }
 
-  @media only screen and (min-width: 600px) {
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-
+  @media only screen and (min-width: 500px) {
+    display: inline-block;
+    width: 50%;
+    
+    #rover1 {
+      float: left;
+      width: 99%;
+    }
+    
+    #rover2 {
+      float: right;
+      width: 99%;
+    }
+    
     .rover-button-img {
-      height: 100%;
       width: 100%;
-      position: relative;
-    }  
+    }
   }
 }

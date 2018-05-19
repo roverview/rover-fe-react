@@ -4,7 +4,7 @@ export const style = {
     boxShadow: 'none',
     paddingTop: '7px',
     zIndex: 1000,
-    position: 'absolute',
+    // position: 'absolute',
     backgroundColor: 'transparent',
   },
   title: {
