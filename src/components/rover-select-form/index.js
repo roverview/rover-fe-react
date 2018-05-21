@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { camerasFetchRequest, photosFetchRequest } from '../../actions/rover-actions.js';
 
-import { style } from './rover-select-form-style.js';
+import './_select-form.scss';
 import { Button } from 'material-ui';
 
 class RoverSelectForm extends Component {
@@ -50,8 +50,8 @@ class RoverSelectForm extends Component {
 
   render() {
     return (
-      <div className='rover-select-form' style={style.root}>
-        <select onChange={this.handleChange} style={style.input}>
+      <div className='rover-select-form'>
+        <select onChange={this.handleChange}>
           {this.state.cameras.length > 0 ? 
             this.state.cameras.map(camera => 
               <option value={camera} key={camera}>{camera}</option>
@@ -60,7 +60,7 @@ class RoverSelectForm extends Component {
           }
         </select>
 
-        <Button onClick={this.handleSubmit} style={style.button}>Submit</Button>
+        <Button onClick={this.handleSubmit}>Submit</Button>
       </div>
     );
   }
