@@ -4,7 +4,6 @@ export const style = {
     boxShadow: 'none',
     paddingTop: '7px',
     zIndex: 1000,
-    // position: 'absolute',
     backgroundColor: 'transparent',
   },
   title: {
@@ -14,5 +13,8 @@ export const style = {
   },
   button: {
     color: '#FFF',
+  },
+  menu: {
+    fontSize: '30px',
   },
 };
