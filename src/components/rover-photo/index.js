@@ -67,11 +67,13 @@ export default class RoverPhoto extends Component {
               subheader={new Date(this.state.currentPhoto.earth_date).toDateString()}
             />
         
-            <CardMedia style={style.media}>
-              {this.state.photos.length > 0
-                ? <img src={this.state.currentPhoto.img_src} style={style.img}/>
-                : null}
-            </CardMedia>
+            {this.state.photos.length > 0
+              ? <div>
+                <Card style={style.media}>
+                  <img style={style.img} src={this.state.currentPhoto.img_src} />
+                </Card>
+              </div>
+              : null}
 
             <CardActions style={style.actions}>
               {this.state.photos.length > 1 && this.state.index !== 0

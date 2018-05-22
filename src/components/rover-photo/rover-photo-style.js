@@ -7,6 +7,7 @@ export const style = {
   },
   media: {
     textAlign: 'center',
+    boxShadow: 'none',
   },
   img: {
     maxWidth: '90%',

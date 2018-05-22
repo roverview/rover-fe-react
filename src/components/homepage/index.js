@@ -16,7 +16,7 @@ class Homepage extends Component {
           className='rover-img'
         />
 
-        <h2>Select A Rover</h2>
+        <Typography variant='headline' style={{ color: '#FFF', marginTop: 10 }}>Select A Rover</Typography>
 
         <RoverButton
           roverName='Curiosity'
