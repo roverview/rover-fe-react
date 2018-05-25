@@ -56,7 +56,7 @@ export default class NavBar extends Component {
       <AppBar position='static' style={style.root}>
         <Toolbar>
           <Typography style={style.title} variant='display1'>
-            RoverView
+              RoverView
           </Typography>
 
           {this.state.width > 550
@@ -64,6 +64,11 @@ export default class NavBar extends Component {
               <Link to='/'>
                 <Button style={style.button}>
                   Home
+                </Button>
+              </Link>
+              <Link to='/login'>
+                <Button style={style.button}>
+                  Log In
                 </Button>
               </Link>
               <Link to='/about'>
@@ -88,6 +93,9 @@ export default class NavBar extends Component {
               >
                 <Link to='/'>
                   <MenuItem>Home</MenuItem>
+                </Link>
+                <Link to='/login'>
+                  <MenuItem>Log In</MenuItem>
                 </Link>
                 <Link to='/about'>
                   <MenuItem>About Us</MenuItem>

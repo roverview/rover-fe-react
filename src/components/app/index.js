@@ -5,6 +5,7 @@ import NavBar from './../navbar';
 import Homepage from './../homepage';
 import RoverContainer from './../rover-container';
 import AboutUs from '../about-us';
+import Login from '../login';
 
 export default class App extends Component {
   render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
           <Route exact path='/' component={Homepage} />
           <Route exact path='/about' component={AboutUs} />
           <Route path='/rover/:roverId' component={RoverContainer} />
+          <Route exact path='/login' component={Login} />
         </div>
       </BrowserRouter>
     );
