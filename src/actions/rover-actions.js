@@ -14,7 +14,6 @@ export const photosFetch = roverPhotos => ({
   payload: roverPhotos,
 });
 
-
 // GET cameras for rover
 export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
   return superagent.get(`${apiPhotoUrl}${rover}/photos?earth_date=${date}&api_key=${apiKey}`)
