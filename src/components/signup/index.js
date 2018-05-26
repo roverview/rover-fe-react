@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { signUpRequest } from '../../actions/auth-actions.js';
 
 import { TextField } from 'material-ui';
@@ -7,6 +9,7 @@ import { Input } from 'material-ui';
 import { Button } from 'material-ui';
 
 import './_signup-style.scss';
+import { Typography } from 'material-ui/styles';
 
 class SignUp extends Component {
   constructor(props) {
@@ -29,7 +32,9 @@ class SignUp extends Component {
     e.preventDefault();
     
     return this.props.tokenSet(this.state)
-    // .then(res => profileFetch());
+      .then(() => {
+        this.props.history.push('/');
+      });
   }
 
   render() {
@@ -50,6 +55,8 @@ class SignUp extends Component {
           onChange={this.handleChange}
         />
         <Button onClick={this.handleSubmit}>Submit</Button>
+
+        <p>Have an account? Sign in <Link to='/login'>here</Link>.</p>
       </div>
     );
   }

@@ -3,18 +3,10 @@ export default (state=null, action) => {
 
   switch(type) {
   case 'USER_CREATE': 
+    delete payload.password;
+    delete payload.findHash;
     return payload;
   default:
     return state;
   }
 };
-
-// export const userCreate = user => ({
-//   type: 'USER_CREATE',
-//   payload: user,
-// });
-
-// // FETCH/GET EXISTING USER
-// export const userFetch = user => ({
-//   type: 'USER_FETCH',
-//   payload: user,

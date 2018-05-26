@@ -11,7 +11,6 @@ export const userProfileCreateRequest = (user) => (dispatch, getState) => {
 
   return superagent.post(`${roverViewApi}/api/profile`)
     .set('Authorization', `Bearer ${token}`)
-    // .field('bio', profile.bio)
     .then(res => {
       dispatch(userProfileCreate(res.body));
       return res;
