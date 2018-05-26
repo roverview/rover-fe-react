@@ -2,8 +2,8 @@
 
 import superagent from 'superagent';
 
-let roverViewApi = 'https://rover-be-staging.herokuapp.com';
-// let roverViewApi = 'http://localhost:3000';
+// let roverViewApi = 'https://rover-be-staging.herokuapp.com';
+let roverViewApi = 'http://localhost:3000';
 
 // CREATE/POST NEW USER
 export const userCreate = user => ({
@@ -18,9 +18,12 @@ export const userFetch = user => ({
 });
 
 export const userCreateRequest = user => (dispatch, getState) => {
-  return superagent.post(`${roverViewApi}/db/users`)
+  return superagent.post(`${roverViewApi}/api/signup`)
+    .send(user)
     .then(res => {
+      console.log(res)
       dispatch(userCreate(res.body));
+      console.log(res.body)
       return res.body;
     });
 };

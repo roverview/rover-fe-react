@@ -1,0 +1,30 @@
+.signup {
+  text-align: center;
+  margin: 0 auto;
+
+  .signupInput {
+    display: block;
+    
+    input {
+      width: 250px;
+      background-color: #FFF;
+    }
+
+    label {
+      color: #FFF;
+      width: 200px;
+    }
+  }
+
+  button {
+  margin: 0 auto;
+  margin-top: 15px;
+  display: block;
+  background: rgb(190, 190, 190);
+  transition: 0.4s;
+  }
+
+  button:hover {
+    background: #888;
+  }
+}
