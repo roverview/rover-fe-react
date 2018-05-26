@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -14,7 +15,7 @@ import { style } from './navbar-style.js';
 import { Menu, MenuList } from 'material-ui';
 import { Fade } from 'material-ui';
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,11 +67,18 @@ export default class NavBar extends Component {
                   Home
                 </Button>
               </Link>
-              <Link to='/login'>
-                <Button style={style.button}>
-                  Log In
-                </Button>
-              </Link>
+              {this.props.token
+                ? <Link to='/favorites'>
+                  <Button style={style.button}>
+                    Favorites
+                  </Button>
+                </Link>
+                : <Link to='/signup'>
+                  <Button style={style.button}>
+                    Sign Up
+                  </Button>
+                </Link>
+              }
               <Link to='/about'>
                 <Button style={style.button}>
                   About Us
@@ -94,9 +102,14 @@ export default class NavBar extends Component {
                 <Link to='/'>
                   <MenuItem>Home</MenuItem>
                 </Link>
-                <Link to='/login'>
-                  <MenuItem>Log In</MenuItem>
-                </Link>
+                {this.props.token
+                  ? <Link to='/Favorites'>
+                    <MenuItem>Favorites</MenuItem>
+                  </Link>
+                  : <Link to='/signup'>
+                    <MenuItem>Sign Up</MenuItem>
+                  </Link>
+                }
                 <Link to='/about'>
                   <MenuItem>About Us</MenuItem>
                 </Link>
@@ -107,3 +120,9 @@ export default class NavBar extends Component {
     );
   }
 }
+
+let mapStateToProps = (state) => ({
+  token: state.token,
+});
+
+export default connect(mapStateToProps, null)(NavBar);

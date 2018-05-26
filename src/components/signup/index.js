@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userCreateRequest } from '../../actions/account-actions.js';
+import { signUpRequest } from '../../actions/auth-actions.js';
 
 import { TextField } from 'material-ui';
 import { Input } from 'material-ui';
@@ -28,8 +28,8 @@ class SignUp extends Component {
   handleSubmit(e) {
     e.preventDefault();
     
-    return this.props.userCreate(this.state)
-      .then(res => console.log(res))
+    return this.props.tokenSet(this.state)
+    // .then(res => profileFetch());
   }
 
   render() {
@@ -56,7 +56,7 @@ class SignUp extends Component {
 }
 
 let mapDispatchToProps = (dispatch) => ({
-  userCreate: user => dispatch(userCreateRequest(user)),
+  tokenSet: user => dispatch(signUpRequest(user)),
 });
 
 export default connect(null, mapDispatchToProps)(SignUp);

@@ -1,10 +1,9 @@
-export default (state=[], action) => {
+export default (state=null, action) => {
   let { type, payload } = action;
-  console.log(action)
 
   switch(type) {
-  case 'USER_CREATE': 
-    return [...state, payload];
+  case 'TOKEN_SET': 
+    return payload;
   default:
     return state;
   }
