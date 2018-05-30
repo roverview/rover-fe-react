@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { userPhotoCreateRequest } from '../../actions/user-photo-actions.js';
 
 import IoHeart from 'react-icons/lib/io/heart';
 import MdNavigateNext from 'react-icons/lib/md/navigate-next';
@@ -8,7 +9,7 @@ import { Card, CardMedia, CardActions, CardHeader } from 'material-ui';
 
 import { style } from './rover-photo-style.js';
 
-export default class RoverPhoto extends Component {
+class RoverPhoto extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +22,7 @@ export default class RoverPhoto extends Component {
     };
     this.clickForward = this.clickForward.bind(this);
     this.clickBackward = this.clickBackward.bind(this);
+    this.clickSave = this.clickSave.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
@@ -57,6 +59,10 @@ export default class RoverPhoto extends Component {
     });
   }
 
+  clickSave() {
+    return this.props.photoCreate(this.props.user._id, this.state.currentPhoto);
+  }
+
   render() {
     return (
       <div className='rover-photo'>
@@ -80,9 +86,12 @@ export default class RoverPhoto extends Component {
                 ? <MdNavigateBefore onClick={this.clickBackward} style={style.activeAction} />
                 : <MdNavigateBefore style={style.inactiveAction} />}
 
-              {/* {this.state.photos.length > 1 && this.state.index !== 0
-                ? <IoHeart style={style.activeAction} />
-                : <IoHeart style={style.inactiveAction} />} */}
+              {this.props.user
+                ? <IoHeart 
+                  style={style.activeAction} 
+                  onClick={() => this.clickSave()}
+                />
+                : null}
 
               {this.state.photos.length > 1 && !this.state.lastPhoto
                 ? <MdNavigateNext onClick={this.clickForward} style={style.activeAction} />
@@ -94,3 +103,13 @@ export default class RoverPhoto extends Component {
     );
   }
 }
+
+let mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+let mapDispatchToProps = (dispatch) => ({
+  photoCreate: (user, photo) => dispatch(userPhotoCreateRequest(user, photo)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoverPhoto);
