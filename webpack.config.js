@@ -22,7 +22,7 @@ let plugins = [
     'process.env.NODE_ENV': JSON.stringify(env),
   }),
   new Dotenv({
-    path: path.resolve(__dirname, './.env');
+    path: path.resolve(__dirname, './.env'),
   }),
 ];
 
