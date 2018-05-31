@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { userPhotoFetchRequest } from '../../actions/user-actions.js';
+import { userFetchRequest } from '../../actions/user-actions.js';
 import FavoritesItem from '../favorites-item';
 
 class FavoritesContainer extends Component {
@@ -11,8 +11,6 @@ class FavoritesContainer extends Component {
   }
 
   render() {
-    console.log(this.props.user);
-
     return (
       <div>
         {this.props.user 
@@ -35,7 +33,7 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  userPhotoFetch: user => dispatch(userPhotoFetchRequest(user)),
+  userPhotoFetch: user => dispatch(userFetchRequest(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesContainer);

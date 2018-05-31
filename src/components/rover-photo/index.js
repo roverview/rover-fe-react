@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userPhotoCreateRequest } from '../../actions/user-actions.js';
+import { userPhotoSaveRequest } from '../../actions/user-actions.js';
 
 import IoHeart from 'react-icons/lib/io/heart';
 import MdNavigateNext from 'react-icons/lib/md/navigate-next';
@@ -109,7 +109,7 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  photoCreate: (user, photo) => dispatch(userPhotoCreateRequest(user, photo)),
+  photoCreate: (user, photo) => dispatch(userPhotoSaveRequest(user, photo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoverPhoto);

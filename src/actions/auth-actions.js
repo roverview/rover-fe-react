@@ -1,8 +1,5 @@
 import superagent from 'superagent';
-import { userProfileCreate } from './user-actions.js';
-
-// let roverViewApi = 'https://rover-be-staging.herokuapp.com';
-let roverViewApi = 'http://localhost:3000';
+import { userCreate } from './user-actions.js';
 
 export const tokenSet = token => ({
   type: 'TOKEN_SET',
@@ -10,21 +7,21 @@ export const tokenSet = token => ({
 });
 
 export const signUpRequest = (user) => (dispatch, getState) => {
-  return superagent.post(`${roverViewApi}/api/signup`)
+  return superagent.post(`${process.env.ROVERVIEW_API}/api/signup`)
     .send(user)
     .then(res => {
       dispatch(tokenSet(res.body.findHash));
-      dispatch(userProfileCreate(res.body));
+      dispatch(userCreate(res.body));
       return res;
     });
 };
 
 export const loginRequest = (user) => (dispatch) => {
-  return superagent.get(`${roverViewApi}/api/signin`)
+  return superagent.get(`${process.env.ROVERVIEW_API}/api/signin`)
     .auth(user.username, user.password)
     .then(res => {
       dispatch(tokenSet(res.body.findHash));
-      dispatch(userProfileCreate(res.body));
+      dispatch(userCreate(res.body));
       return res;
     });
 };

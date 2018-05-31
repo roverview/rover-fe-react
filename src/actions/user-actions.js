@@ -1,53 +1,67 @@
 import superagent from 'superagent';
-let roverViewApi = 'http://localhost:3000';
 
-export const userProfileCreate = (user) => ({
+export const userCreate = (user) => ({
   type: 'USER_CREATE',
   payload: user,
 });
 
-export const userProfileUpdate = (user) => ({
-  type: 'USER_UPDATE',
+export const userFetch = (user) => ({
+  type: 'USER_FETCH',
   payload: user,
 });
 
-export const userProfileFetch = (user) => ({
-  type: 'USER_PHOTOS_FETCH',
+export const userPhotoSave = (user) => ({
+  type: 'USER_PHOTO_SAVE',
   payload: user,
 });
 
-export const userProfileCreateRequest = (user) => (dispatch, getState) => {
+export const userPhotoDelete = (user) => ({
+  type: 'USER_PHOTO_DELETE',
+  payload: user,
+});
+
+export const userCreateRequest = (user) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.post(`${roverViewApi}/api/profile`)
+  return superagent.post(`${process.env.ROVERVIEW_API}/api/profile`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
-      dispatch(userProfileCreate(res.body));
+      dispatch(userCreate(res.body));
+      return res;
+    });
+};
+
+export const userFetchRequest = (user) => (dispatch, getState) => {
+  let { token } = getState();
+
+  return superagent.get(`${process.env.ROVERVIEW_API}/api/${user._id}/photos`)
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => {
+      dispatch(userFetch(res.body));
       return res;
     });
 };
 
 // post photo data & update profile with photos array
-export const userPhotoCreateRequest = (user, photo) => (dispatch, getState) => {
+export const userPhotoSaveRequest = (user, photo) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.post(`${roverViewApi}/api/${user}`)
+  return superagent.post(`${process.env.ROVERVIEW_API}/api/${user}`)
     .set('Authorization', `Bearer ${token}`)
     .send(photo)
     .then(res => {
-      dispatch(userProfileUpdate(res.body));
+      dispatch(userPhotoSave(res.body));
       return res;
     });
 };
 
-// post photo data & update profile with photos array
-export const userPhotoFetchRequest = (user) => (dispatch, getState) => {
+export const userPhotoDeleteRequest = (photo) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.get(`${roverViewApi}/api/${user._id}/photos`)
+  return superagent.delete(`${process.env.ROVERVIEW_API}/api/${photo.userId}/${photo._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
-      dispatch(userProfileFetch(res.body));
+      dispatch(userPhotoDelete(photo._id));
       return res;
     });
 };

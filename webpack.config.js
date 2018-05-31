@@ -8,6 +8,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const ExtractWebpackPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const env = process.env.NODE_ENV;
 
@@ -20,6 +21,7 @@ let plugins = [
     __API_URL__: JSON.stringify(process.env.API_URL),
     'process.env.NODE_ENV': JSON.stringify(env),
   }),
+  new Dotenv(),
 ];
 
 if (production)

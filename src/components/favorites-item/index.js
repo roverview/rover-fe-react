@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { userPhotoDeleteRequest } from '../../actions/user-actions.js';
+
 import { Card, CardMedia, CardActions, CardHeader } from 'material-ui';
+import MdDeleteForever from 'react-icons/lib/md/delete-forever';
 
 import { style } from './favorites-item-style.js';
 
-export default class FavoritesItem extends Component {
+class FavoritesItem extends Component {
   render() {
     let cardTitle = `${this.props.photo.roverName}: ${this.props.photo.camName}`;
 
@@ -19,14 +23,20 @@ export default class FavoritesItem extends Component {
             <img style={style.img} src={this.props.photo.imgSrc} />
           </Card>
 
-          {/* <CardActions style={style.actions}>
-            {this.state.photos.length > 1 && this.state.index !== 0
-              ? <MdNavigateBefore onClick={this.clickBackward} style={style.activeAction} />
-              : <MdNavigateBefore style={style.inactiveAction} />} */}
-
-          {/* </CardActions> */}
+          <CardActions style={style.actions}>
+            <MdDeleteForever 
+              style={style.activeAction} 
+              onClick={() => this.props.userPhotoDelete(this.props.photo)}
+            />
+          </CardActions>
         </Card>
       </div>
     );
   }
 }
+
+let mapDispatchToProps = (dispatch) => ({
+  userPhotoDelete: (photo) => dispatch(userPhotoDeleteRequest(photo)),
+});
+
+export default connect(null, mapDispatchToProps)(FavoritesItem);

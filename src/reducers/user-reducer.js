@@ -6,9 +6,13 @@ export default (state=null, action) => {
     delete payload.password;
     delete payload.findHash;
     return payload;
-  case 'USER_UPDATE': 
+  case 'USER_FETCH':
     return payload;
-  case 'USER_PHOTOS_FETCH':
+  case 'USER_PHOTO_SAVE': 
+    return payload;
+  case 'USER_PHOTO_DELETE':
+    console.log('USER_PHOTO_DELETE', state);
+    console.log('USER_PHOTO_DELETE', action);
     return payload;
   default:
     return state;
