@@ -8,6 +8,8 @@ export default (state=null, action) => {
     return payload;
   case 'USER_UPDATE': 
     return payload;
+  case 'USER_PHOTOS_FETCH':
+    return payload;
   default:
     return state;
   }

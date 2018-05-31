@@ -11,6 +11,11 @@ export const userProfileUpdate = (user) => ({
   payload: user,
 });
 
+export const userProfileFetch = (user) => ({
+  type: 'USER_PHOTOS_FETCH',
+  payload: user,
+});
+
 export const userProfileCreateRequest = (user) => (dispatch, getState) => {
   let { token } = getState();
 
@@ -31,6 +36,18 @@ export const userPhotoCreateRequest = (user, photo) => (dispatch, getState) => {
     .send(photo)
     .then(res => {
       dispatch(userProfileUpdate(res.body));
+      return res;
+    });
+};
+
+// post photo data & update profile with photos array
+export const userPhotoFetchRequest = (user) => (dispatch, getState) => {
+  let { token } = getState();
+
+  return superagent.get(`${roverViewApi}/api/${user._id}/photos`)
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => {
+      dispatch(userProfileFetch(res.body));
       return res;
     });
 };
