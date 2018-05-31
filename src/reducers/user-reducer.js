@@ -6,6 +6,8 @@ export default (state=null, action) => {
     delete payload.password;
     delete payload.findHash;
     return payload;
+  case 'USER_UPDATE': 
+    return payload;
   default:
     return state;
   }

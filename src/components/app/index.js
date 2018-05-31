@@ -7,6 +7,7 @@ import RoverContainer from './../rover-container';
 import AboutUs from '../about-us';
 import Login from '../login';
 import SignUp from '../signup';
+import FavoritesContainer from '../favorites-container';
 
 export default class App extends Component {
   render() {
@@ -19,6 +20,7 @@ export default class App extends Component {
           <Route path='/rover/:roverId' component={RoverContainer} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/favorites' component={FavoritesContainer} />
         </div>
       </BrowserRouter>
     );

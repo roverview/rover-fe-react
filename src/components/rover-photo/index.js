@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userPhotoCreateRequest } from '../../actions/user-photo-actions.js';
+import { userPhotoCreateRequest } from '../../actions/user-actions.js';
 
 import IoHeart from 'react-icons/lib/io/heart';
 import MdNavigateNext from 'react-icons/lib/md/navigate-next';

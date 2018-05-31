@@ -103,7 +103,7 @@ class NavBar extends Component {
                   <MenuItem>Home</MenuItem>
                 </Link>
                 {this.props.token
-                  ? <Link to='/Favorites'>
+                  ? <Link to='/favorites'>
                     <MenuItem>Favorites</MenuItem>
                   </Link>
                   : <Link to='/signup'>
