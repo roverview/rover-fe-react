@@ -9,6 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const ExtractWebpackPlugin = require('extract-text-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const path = require('path');
 
 const env = process.env.NODE_ENV;
 
