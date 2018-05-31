@@ -31,9 +31,6 @@ if (production)
   plugins = plugins.concat([ 
     new CleanWebpackPlugin(), 
     new UglifyWebpackPlugin(), 
-    new Dotenv({
-      path: path.resolve(__dirname, './.env')
-    }),
   ]);
 
 module.exports = {
