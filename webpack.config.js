@@ -21,11 +21,19 @@ let plugins = [
     __API_URL__: JSON.stringify(process.env.API_URL),
     'process.env.NODE_ENV': JSON.stringify(env),
   }),
-  new Dotenv(),
+  new Dotenv({
+    path: path.resolve(__dirname, './.env');
+  }),
 ];
 
 if (production)
-  plugins = plugins.concat([ new CleanWebpackPlugin(), new UglifyWebpackPlugin(), new Dotenv() ]);
+  plugins = plugins.concat([ 
+    new CleanWebpackPlugin(), 
+    new UglifyWebpackPlugin(), 
+    new Dotenv({
+      path: path.resolve(__dirname, './.env')
+    }),
+  ]);
 
 module.exports = {
   plugins,
