@@ -25,7 +25,7 @@ let plugins = [
 ];
 
 if (production)
-  plugins = plugins.concat([ new CleanWebpackPlugin(), new UglifyWebpackPlugin() ]);
+  plugins = plugins.concat([ new CleanWebpackPlugin(), new UglifyWebpackPlugin(), new Dotenv() ]);
 
 module.exports = {
   plugins,
