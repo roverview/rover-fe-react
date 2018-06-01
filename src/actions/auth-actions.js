@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import { userCreate } from './user-actions.js';
+import dotenv from 'dotenv';
 
 export const tokenSet = token => ({
   type: 'TOKEN_SET',
