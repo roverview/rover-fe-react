@@ -12,6 +12,7 @@ const Dotenv = require('dotenv-webpack');
 // const env = process.env.NODE_ENV;
 
 let plugins = [
+  new Dotenv(),
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractWebpackPlugin('bundle-[hash].css'),
   new HTMLWebpackPlugin({template: `${__dirname}/src/index.html`}),
@@ -20,7 +21,6 @@ let plugins = [
   //   __API_URL__: JSON.stringify(process.env.API_URL),
   //   'process.env.NODE_ENV': JSON.stringify(env),
   // }),
-  new Dotenv(),
 ];
 
 if (process.env.NODE_ENV === 'production')
