@@ -1,5 +1,4 @@
 import superagent from 'superagent';
-import dotenv from 'dotenv';
 
 export const userCreate = (user) => ({
   type: 'USER_CREATE',

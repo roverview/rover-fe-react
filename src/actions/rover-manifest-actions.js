@@ -1,5 +1,4 @@
 import superagent from 'superagent';
-import dotenv from 'dotenv';
 
 // GET mission manifest for each rover from Mars Rover API
 export const manifestFetch = roverManifest => ({

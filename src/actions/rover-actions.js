@@ -1,6 +1,5 @@
 import superagent from 'superagent';
 import { findShortCamera } from './../lib/rover-cameras.js';
-import dotenv from 'dotenv';
 
 export const camerasFetch = roverCameras => ({
   type: 'ROVER_CAMERA_FETCH',

@@ -3,7 +3,6 @@ import thunk from './thunk';
 import reporter from './reporter';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import dotenv from 'dotenv';
 
 const PROD = process.env.NODE_ENV === 'production';
 
