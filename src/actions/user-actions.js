@@ -34,7 +34,7 @@ export const userCreateRequest = (user) => (dispatch, getState) => {
 export const userFetchRequest = (user) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.get(`${process.env.ROVERVIEW_API}/api/${user._id}/photos`)
+  return superagent.get(`${process.env.ROVERVIEW_API}/api/${user}/photos`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(userFetch(res.body));

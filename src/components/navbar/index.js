@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { tokenDelete } from '../../actions/auth-actions.js';
 
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import { Button, MenuItem } from 'material-ui';
 import { withStyles } from 'material-ui';
 import { grey900 } from 'material-ui/colors/grey';
 import { Typography } from 'material-ui';
 import MenuIcon from 'react-icons/lib/md/menu';
+import { Button, Menu, MenuList, MenuItem, Fade } from 'material-ui';
 
 import { style } from './navbar-style.js';
-import { Menu, MenuList } from 'material-ui';
-import { Fade } from 'material-ui';
 
 class NavBar extends Component {
   constructor(props) {
@@ -26,6 +25,7 @@ class NavBar extends Component {
     this.setDimensions = this.setDimensions.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +51,11 @@ class NavBar extends Component {
   handleClose() {
     this.setState({ anchorEl: null });
   };
+
+  handleLogout() {
+    this.props.tokenDelete();
+    return this.props.history.push('/');
+  }
 
   render() {
     return (
@@ -84,6 +89,13 @@ class NavBar extends Component {
                   About Us
                 </Button>
               </Link>
+              {this.props.token
+                ? <Button 
+                  onClick={this.handleLogout}
+                  style={style.button}
+                >Logout</Button>
+                : null
+              }
             </div>
             : <div>
               <MenuIcon 
@@ -113,6 +125,10 @@ class NavBar extends Component {
                 <Link to='/about'>
                   <MenuItem>About Us</MenuItem>
                 </Link>
+                {this.props.token
+                  ? <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                  : null
+                }
               </Menu>
             </div>}
         </Toolbar>
@@ -125,4 +141,8 @@ let mapStateToProps = (state) => ({
   token: state.token,
 });
 
-export default connect(mapStateToProps, null)(NavBar);
+let mapDispatchToProps = (dispatch) => ({
+  tokenDelete: () => dispatch(tokenDelete()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { tokenSet } from '../../actions/auth-actions.js';
+import { userFetchRequest } from '../../actions/user-actions';
 
 import NavBar from './../navbar';
 import Homepage from './../homepage';
@@ -9,7 +12,17 @@ import Login from '../login';
 import SignUp from '../signup';
 import FavoritesContainer from '../favorites-container';
 
-export default class App extends Component {
+class App extends Component {
+  componentWillMount() {
+    let localId = localStorage.roverviewId;
+    let localToken = localStorage.roverviewToken;
+
+    if (localToken && localId) {
+      this.props.tokenSet(localToken);
+      this.props.userFetch(localId);
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -27,4 +40,9 @@ export default class App extends Component {
   }
 }
 
-// export default muiTheme()(App);
+let mapDispatchToProps = (dispatch) => ({
+  tokenSet: token => dispatch(tokenSet(token)),
+  userFetch: user => dispatch(userFetchRequest(user)),
+});
+
+export default connect(null, mapDispatchToProps)(App);

@@ -6,10 +6,6 @@ import { userFetchRequest } from '../../actions/user-actions.js';
 import FavoritesItem from '../favorites-item';
 
 class FavoritesContainer extends Component {
-  componentWillMount() {
-    return this.props.userPhotoFetch(this.props.user);
-  }
-
   render() {
     return (
       <div>
