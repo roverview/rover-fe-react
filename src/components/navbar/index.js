@@ -6,11 +6,9 @@ import { tokenDelete } from '../../actions/auth-actions.js';
 
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import { withStyles } from 'material-ui';
 import { grey900 } from 'material-ui/colors/grey';
-import { Typography } from 'material-ui';
 import MenuIcon from 'react-icons/lib/md/menu';
-import { Button, Menu, MenuList, MenuItem, Fade } from 'material-ui';
+import { withStyles, Typography, Button, Menu, MenuList, MenuItem, Fade } from 'material-ui';
 
 import { style } from './navbar-style.js';
 

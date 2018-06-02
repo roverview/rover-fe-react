@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { loginRequest } from '../../actions/auth-actions.js';
 
-import { TextField } from 'material-ui';
-import { Input } from 'material-ui';
-import { Button } from 'material-ui';
+import { TextField, Input, Button } from 'material-ui';
 
 import './_login-style.scss';
 

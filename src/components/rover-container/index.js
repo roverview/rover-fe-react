@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import RoverForm from './../rover-form';
 import RoverManifest from './../rover-manifest';

@@ -6,12 +6,11 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import RoverSelectForm from './../rover-select-form';
-import { style } from './rover-form-style.js';
-import { Card } from 'material-ui';
-import { Typography } from 'material-ui';
-
 import RoverPhoto from './../rover-photo';
+import RoverSelectForm from './../rover-select-form';
+
+import { Card, Typography } from 'material-ui';
+import { style } from './rover-form-style.js';
 
 class RoverForm extends Component {
   constructor (props) {

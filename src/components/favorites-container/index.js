@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { userFetchRequest } from '../../actions/user-actions.js';
+
 import FavoritesItem from '../favorites-item';
 
 class FavoritesContainer extends Component {

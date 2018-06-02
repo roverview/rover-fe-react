@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 
 import { signUpRequest } from '../../actions/auth-actions.js';
 
-import { TextField } from 'material-ui';
-import { Input } from 'material-ui';
-import { Button } from 'material-ui';
+import { TextField, Input, Button } from 'material-ui';
+import { Typography } from 'material-ui/styles';
 
 import './_signup-style.scss';
-import { Typography } from 'material-ui/styles';
 
 class SignUp extends Component {
   constructor(props) {
