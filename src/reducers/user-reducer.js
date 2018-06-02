@@ -11,9 +11,9 @@ export default (state=null, action) => {
   case 'USER_PHOTO_SAVE': 
     return payload;
   case 'USER_PHOTO_DELETE':
-    console.log('USER_PHOTO_DELETE', state);
-    console.log('USER_PHOTO_DELETE', action);
-    return payload;
+    let updatedPhotos = state.photos.filter(photo => photo._id !== payload._id);
+
+    return Object.assign({}, state, { photos: updatedPhotos });
   default:
     return state;
   }

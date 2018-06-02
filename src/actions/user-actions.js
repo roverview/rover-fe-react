@@ -15,9 +15,9 @@ export const userPhotoSave = (user) => ({
   payload: user,
 });
 
-export const userPhotoDelete = (user) => ({
+export const userPhotoDelete = (photo) => ({
   type: 'USER_PHOTO_DELETE',
-  payload: user,
+  payload: photo,
 });
 
 export const userCreateRequest = (user) => (dispatch, getState) => {
@@ -61,7 +61,7 @@ export const userPhotoDeleteRequest = (photo) => (dispatch, getState) => {
   return superagent.delete(`${__ROVERVIEW_API__}/api/${photo.userId}/${photo._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
-      dispatch(userPhotoDelete(photo._id));
+      dispatch(userPhotoDelete(photo));
       return res;
     });
 };
