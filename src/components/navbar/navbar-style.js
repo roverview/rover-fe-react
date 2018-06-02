@@ -14,6 +14,11 @@ export const style = {
   button: {
     color: '#FFF',
   },
+  iconButton: {
+    color: '#FFF',
+    padding: 0,
+    fontSize: '23px',
+  },
   menu: {
     fontSize: '30px',
   },

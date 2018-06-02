@@ -10,7 +10,10 @@ import { grey900 } from 'material-ui/colors/grey';
 import MenuIcon from 'react-icons/lib/md/menu';
 import { withStyles, Typography, Button, Menu, MenuList, MenuItem, Fade } from 'material-ui';
 
+import MdPowerSettingsNew from 'react-icons/lib/md/power-settings-new';
+
 import { style } from './navbar-style.js';
+import './_navbar-style.scss';
 
 class NavBar extends Component {
   constructor(props) {
@@ -57,10 +60,10 @@ class NavBar extends Component {
 
   render() {
     return (
-      <AppBar position='static' style={style.root}>
+      <AppBar className='navbar' position='static' style={style.root}>
         <Toolbar>
           <Typography style={style.title} variant='display1'>
-              RoverView
+            <Link to='/'>RoverView</Link>
           </Typography>
 
           {this.state.width > 550
@@ -88,10 +91,10 @@ class NavBar extends Component {
                 </Button>
               </Link>
               {this.props.token
-                ? <Button 
-                  onClick={this.handleLogout}
-                  style={style.button}
-                >Logout</Button>
+                ? <Button onClick={this.handleLogout} style={style.button}>
+                  {/* <MdPowerSettingsNew /> */}
+                  Logout
+                </Button>
                 : null
               }
             </div>

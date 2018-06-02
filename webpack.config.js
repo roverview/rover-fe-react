@@ -1,6 +1,5 @@
 'use strict';
 
-// require('dotenv').config({ path: `./.env` });
 require('dotenv').config();
 
 const production = process.env.NODE_ENV === 'production';
