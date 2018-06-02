@@ -7,7 +7,7 @@ export const manifestFetch = roverManifest => ({
 });
 
 export const manifestFetchRequest = rover => (dispatch, getState) => {
-  return superagent.get(`${process.env.API_MANIFEST_URL}${rover}?api_key=${process.env.API_KEY}`)
+  return superagent.get(`${__API_MANIFEST_URL__}${rover}?api_key=${__API_KEY__}`)
     .then(res => {
       dispatch(manifestFetch(res.body));
       return res.body.photo_manifest;

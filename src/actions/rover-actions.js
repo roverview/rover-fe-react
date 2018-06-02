@@ -13,7 +13,7 @@ export const photosFetch = roverPhotos => ({
 
 // GET cameras for rover
 export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
-  return superagent.get(`${process.env.API_PHOTO_URL}${rover}/photos?earth_date=${date}&api_key=${process.env.API_KEY}`)
+  return superagent.get(`${__API_PHOTO_URL__}${rover}/photos?earth_date=${date}&api_key=${__API_KEY__}`)
     .then(res => {
       let cameras = [];
       
@@ -34,7 +34,7 @@ export const camerasFetchRequest = (rover, date) => (dispatch, getState) => {
 export const photosFetchRequest = (rover, date, camera) => (dispatch, getState) => {
   let shortCamera = findShortCamera(camera);
 
-  return superagent.get(`${process.env.API_PHOTO_URL}${rover}/photos?earth_date=${date}&camera=${shortCamera}&api_key=${process.env.API_KEY}`)
+  return superagent.get(`${__API_PHOTO_URL__}${rover}/photos?earth_date=${date}&camera=${shortCamera}&api_key=${__API_KEY__}`)
     .then(res => {
       dispatch(photosFetch(res.body));
       return res.body;

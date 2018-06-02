@@ -15,7 +15,7 @@ export const tokenDelete = () => {
 };
 
 export const signUpRequest = (user) => (dispatch, getState) => {
-  return superagent.post(`${process.env.ROVERVIEW_API}/api/signup`)
+  return superagent.post(`${__ROVERVIEW_API__}/api/signup`)
     .send(user)
     .then(res => {
       dispatch(tokenSet(res.body.findHash));
@@ -31,7 +31,7 @@ export const signUpRequest = (user) => (dispatch, getState) => {
 };
 
 export const loginRequest = (user) => (dispatch, getState) => {
-  return superagent.get(`${process.env.ROVERVIEW_API}/api/signin`)
+  return superagent.get(`${__ROVERVIEW_API__}/api/signin`)
     .auth(user.username, user.password)
     .then(res => {
       dispatch(tokenSet(res.body.findHash));

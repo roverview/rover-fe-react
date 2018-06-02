@@ -23,7 +23,7 @@ export const userPhotoDelete = (user) => ({
 export const userCreateRequest = (user) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.post(`${process.env.ROVERVIEW_API}/api/profile`)
+  return superagent.post(`${__ROVERVIEW_API__}/api/profile`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(userCreate(res.body));
@@ -34,7 +34,7 @@ export const userCreateRequest = (user) => (dispatch, getState) => {
 export const userFetchRequest = (user) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.get(`${process.env.ROVERVIEW_API}/api/${user}/photos`)
+  return superagent.get(`${__ROVERVIEW_API__}/api/${user}/photos`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(userFetch(res.body));
@@ -46,7 +46,7 @@ export const userFetchRequest = (user) => (dispatch, getState) => {
 export const userPhotoSaveRequest = (user, photo) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.post(`${process.env.ROVERVIEW_API}/api/${user}`)
+  return superagent.post(`${__ROVERVIEW_API__}/api/${user}`)
     .set('Authorization', `Bearer ${token}`)
     .send(photo)
     .then(res => {
@@ -58,7 +58,7 @@ export const userPhotoSaveRequest = (user, photo) => (dispatch, getState) => {
 export const userPhotoDeleteRequest = (photo) => (dispatch, getState) => {
   let { token } = getState();
 
-  return superagent.delete(`${process.env.ROVERVIEW_API}/api/${photo.userId}/${photo._id}`)
+  return superagent.delete(`${__ROVERVIEW_API__}/api/${photo.userId}/${photo._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(userPhotoDelete(photo._id));
