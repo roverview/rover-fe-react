@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { userFetchRequest } from '../../actions/user-actions.js';
 
 import FavoritesItem from '../favorites-item';
+import './_favorites-container.scss';
 
 class FavoritesContainer extends Component {
   render() {
     return (
-      <div>
+      <div className='favorites-container'>
         {this.props.user 
           ? this.props.user.photos.length > 0
             ? this.props.user.photos.map(photo => {
@@ -17,8 +18,11 @@ class FavoritesContainer extends Component {
                 key={photo._id}
               />;
             })
-            : null
-          : null}
+            : <div>
+              <p>These aren't the droids you're looking for.</p>
+              <p>Save some favorites to view them here!</p>
+            </div>
+          : null }
       </div>
     );
   }

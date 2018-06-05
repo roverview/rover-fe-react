@@ -66,7 +66,7 @@ class NavBar extends Component {
             <Link to='/'>RoverView</Link>
           </Typography>
 
-          {this.state.width > 550
+          {this.state.width > 700
             ? <div>
               <Link to='/'>
                 <Button style={style.button}>
