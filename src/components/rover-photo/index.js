@@ -19,6 +19,7 @@ class RoverPhoto extends Component {
       index: 0,
       nextIndex: 0,
       lastPhoto: false,
+      likeColor: '#999',
     };
     this.clickForward = this.clickForward.bind(this);
     this.clickBackward = this.clickBackward.bind(this);
@@ -60,6 +61,9 @@ class RoverPhoto extends Component {
   }
 
   clickSave() {
+    this.setState({
+      likeColor: '#DD0505',
+    });
     return this.props.photoCreate(this.props.user._id, this.state.currentPhoto);
   }
 
@@ -88,7 +92,7 @@ class RoverPhoto extends Component {
 
               {this.props.user
                 ? <IoHeart 
-                  style={style.activeAction} 
+                  style={{ fontSize: '1.5em', color: this.state.likeColor }} 
                   onClick={() => this.clickSave()}
                 />
                 : null}

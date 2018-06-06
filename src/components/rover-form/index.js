@@ -11,6 +11,7 @@ import RoverSelectForm from './../rover-select-form';
 
 import { Card, Typography } from 'material-ui';
 import { style } from './rover-form-style.js';
+import './_rover-form-style.scss';
 
 class RoverForm extends Component {
   constructor (props) {

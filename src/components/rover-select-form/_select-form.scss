@@ -6,9 +6,11 @@
   text-align: center;
   position: relative;
 
-  
   select {
     font-family: Avenir, sans-serif;
+    width: 200px;
+    font-size: 12px;
+    padding: 5px;
   }
 
   button {
@@ -17,7 +19,6 @@
     display: block;
     background: rgb(190, 190, 190);
     transition: 0.4s;
-    // text-transform: capitalize;
   }
 
   button:hover {
