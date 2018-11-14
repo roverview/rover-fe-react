@@ -13,15 +13,13 @@ const store = appCreateStore();
 
 class Root extends Component {
   render() {
-    return(
-      <main>
-        <Provider store={store}>
-          <MuiThemeProvider theme={muiTheme}>
-            <App />
-          </MuiThemeProvider>
-        </Provider>
-      </main>
-    );
+    return <main>
+      <Provider store={store}>
+        <MuiThemeProvider theme={muiTheme}>
+          <App />
+        </MuiThemeProvider>
+      </Provider>
+    </main>;
   }
 }
 

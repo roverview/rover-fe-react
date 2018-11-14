@@ -5,9 +5,9 @@ import { tokenSet } from '../../actions/auth-actions.js';
 import { userFetchRequest } from '../../actions/user-actions';
 
 import NavBar from './../navbar';
-import Homepage from './../homepage';
+import Homepage from './../homepage/Homepage';
 import RoverContainer from './../rover-container';
-import AboutUs from '../about-us';
+// import AboutUs from '../about-us';
 import Login from '../login';
 import SignUp from '../signup';
 import FavoritesContainer from '../favorites-container';
@@ -27,13 +27,12 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route path='*' component={NavBar} />
           <Route exact path='/' component={Homepage} />
-          <Route exact path='/about' component={AboutUs} />
           <Route path='/rover/:roverId' component={RoverContainer} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <Route exact path='/favorites' component={FavoritesContainer} />
+          <Route path='*' component={NavBar} />
         </div>
       </BrowserRouter>
     );

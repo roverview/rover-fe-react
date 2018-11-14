@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -7,15 +7,23 @@ import { tokenDelete } from '../../actions/auth-actions.js';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import { grey900 } from 'material-ui/colors/grey';
-import MenuIcon from 'react-icons/lib/md/menu';
-import { withStyles, Typography, Button, Menu, MenuList, MenuItem, Fade } from 'material-ui';
+import { BottomNavigation } from 'material-ui';
 
 import MdPowerSettingsNew from 'react-icons/lib/md/power-settings-new';
+import MdFavoriteBorder from 'react-icons/lib/md/favorite-border';
+import MdHome from 'react-icons/lib/md/home';
 
-import { style } from './navbar-style.js';
+// import { style } from './navbar-style.js';
 import './_navbar-style.scss';
+import { BottomNavigationAction } from 'material-ui';
 
-class NavBar extends Component {
+const style = {
+  bottomNav: {
+    background: '#e2e2e2',
+  },
+};
+
+class BottomNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,26 +31,9 @@ class NavBar extends Component {
       height: 0,
       anchorEl: null,
     };
-    this.setDimensions = this.setDimensions.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  componentDidMount() {
-    this.setDimensions();
-    window.addEventListener('resize', this.setDimensions);
-  }
-  
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.setDimensions);
-  }
-  
-  setDimensions() {
-    this.setState({ 
-      width: window.innerWidth, 
-      height: window.innerHeight,
-    });
   }
 
   handleClick(e) {
@@ -59,82 +50,84 @@ class NavBar extends Component {
   }
 
   render() {
-    return (
-      <AppBar className='navbar' position='static' style={style.root}>
-        <Toolbar>
-          <Typography style={style.title} variant='display1'>
-            <Link to='/'>RoverView</Link>
-          </Typography>
+    return <BottomNavigation showLabels style={style.bottomNav}>
+      <BottomNavigationAction label='Home' icon={<MdHome />} />
 
-          {this.state.width > 700
-            ? <div>
-              <Link to='/'>
-                <Button style={style.button}>
-                  Home
-                </Button>
-              </Link>
-              {this.props.token
-                ? <Link to='/favorites'>
-                  <Button style={style.button}>
-                    Favorites
-                  </Button>
-                </Link>
-                : <Link to='/signup'>
-                  <Button style={style.button}>
-                    Sign Up
-                  </Button>
-                </Link>
-              }
-              <Link to='/about'>
-                <Button style={style.button}>
-                  About Us
-                </Button>
-              </Link>
-              {this.props.token
-                ? <Button onClick={this.handleLogout} style={style.button}>
-                  {/* <MdPowerSettingsNew /> */}
-                  Logout
-                </Button>
-                : null
-              }
-            </div>
-            : <div>
-              <MenuIcon 
-                aria-owns={this.state.anchorEl ? 'simple-menu' : null}
-                aria-haspopup='true'
-                style={style.menu} 
-                onClick={this.handleClick}
-              />
+      {this.props.token
+        ? <Fragment>
+          <BottomNavigationAction label='Favorites' icon={<MdPowerSettingsNew />} />
+          <BottomNavigationAction label='Sign Out' icon={<MdPowerSettingsNew />} />
+        </Fragment>
+        : <BottomNavigationAction label='Log In' icon={<MdFavoriteBorder />} />}
+    </BottomNavigation>;
+    //     {this.state.width > 700
+    //       ? <div>
+    //         <Link to='/'>
+    //           <Button style={style.button}>
+    //             Home
+    //           </Button>
+    //         </Link>
+    //         {this.props.token
+    //           ? <Link to='/favorites'>
+    //             <Button style={style.button}>
+    //               Favorites
+    //             </Button>
+    //           </Link>
+    //           : <Link to='/signup'>
+    //             <Button style={style.button}>
+    //               Sign Up
+    //             </Button>
+    //           </Link>
+    //         }
+    //         {/* <Link to='/about'>
+    //           <Button style={style.button}>
+    //             About Us
+    //           </Button>
+    //         </Link> */}
+    //         {this.props.token
+    //           ? <Button onClick={this.handleLogout} style={style.button}>
+    //             {/* <MdPowerSettingsNew /> */}
+    //             Logout
+    //           </Button>
+    //           : null
+    //         }
+    //       </div>
+    //       : <div>
+    //         <MenuIcon 
+    //           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
+    //           aria-haspopup='true'
+    //           style={style.menu} 
+    //           onClick={this.handleClick}
+    //         />
 
-              <Menu
-                id='simple-menu'
-                anchorEl={this.state.anchorEl}
-                open={Boolean(this.state.anchorEl)}
-                onClose={this.handleClose}
-              >
-                <Link to='/'>
-                  <MenuItem>Home</MenuItem>
-                </Link>
-                {this.props.token
-                  ? <Link to='/favorites'>
-                    <MenuItem>Favorites</MenuItem>
-                  </Link>
-                  : <Link to='/signup'>
-                    <MenuItem>Sign Up</MenuItem>
-                  </Link>
-                }
-                <Link to='/about'>
-                  <MenuItem>About Us</MenuItem>
-                </Link>
-                {this.props.token
-                  ? <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
-                  : null
-                }
-              </Menu>
-            </div>}
-        </Toolbar>
-      </AppBar>
-    );
+    //         <Menu
+    //           id='simple-menu'
+    //           anchorEl={this.state.anchorEl}
+    //           open={Boolean(this.state.anchorEl)}
+    //           onClose={this.handleClose}
+    //         >
+    //           <Link to='/'>
+    //             <MenuItem>Home</MenuItem>
+    //           </Link>
+    //           {this.props.token
+    //             ? <Link to='/favorites'>
+    //               <MenuItem>Favorites</MenuItem>
+    //             </Link>
+    //             : <Link to='/signup'>
+    //               <MenuItem>Sign Up</MenuItem>
+    //             </Link>
+    //           }
+    //           <Link to='/about'>
+    //             <MenuItem>About Us</MenuItem>
+    //           </Link>
+    //           {this.props.token
+    //             ? <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+    //             : null
+    //           }
+    //         </Menu>
+    //       </div>}
+    //   </Toolbar>
+    // </AppBar>
   }
 }
 
@@ -146,4 +139,4 @@ let mapDispatchToProps = (dispatch) => ({
   tokenDelete: () => dispatch(tokenDelete()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(BottomNav);

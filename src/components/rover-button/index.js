@@ -4,23 +4,12 @@ import './_rover-button.scss';
 
 export default class RoverButton extends Component {
   render() {
-    return (
-      <div className='rover-button' id={this.props.id} >
-        <Link to={this.props.link}>
-          <div className='rover-button-img'>
-            <div className='col-1'></div>
-            <div className='col-2'>
-              <h3>{this.props.roverName}</h3>
-            </div>
-            <div className='col-3'></div>
-            <img 
-              className='button-img' 
-              src={this.props.img} 
-              id={this.props.id} 
-            />
-          </div>
-        </Link>
-      </div>
-    );
+    const { roverName, id, link, img } = this.props;
+
+    return <Link to={link}>
+      {/* <h3>{roverName}</h3> */}
+      <img className='button-img' src={img} id={id} />
+    </Link>;
+    // </div>;
   }
 }

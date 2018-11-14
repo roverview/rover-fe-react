@@ -3,39 +3,40 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { manifestFetchRequest } from '../../actions/rover-manifest-actions.js';
 
-import RoverButton from './../rover-button/index.js';
-
+import RoverButton from '../rover-button/index.js';
 import { Typography } from 'material-ui';
 import './_homepage.scss';
 
 class Homepage extends Component {
   render() {
-    return (
-      <div className='homepage'>
-        <img
-          src='https://raw.githubusercontent.com/roverview/rover-fe-react/master/assets/images/rover-header.jpg' 
-          className='rover-img'
-        />
+    const { manifestFetch } = this.props;
 
-        <Typography variant='headline' style={{ color: '#FFF', marginTop: 10 }}>Select A Rover</Typography>
-
+    return <div className='homepage'>
+      <div className='rover1'>
         <RoverButton
           roverName='Curiosity'
-          img='https://raw.githubusercontent.com/roverview/rover-fe-react/master/assets/images/curiosity-sq.jpg'
-          onClick={() => this.props.manifestFetch('curiosity')}
+          // img='../../../assets/images/curiosity-selfie.jpg'
+          onClick={() => manifestFetch('curiosity')}
           link='/rover/curiosity'
           id='rover1'
         />
-        
+      </div>
+
+      <div className='headline'>
+        <Typography variant='headline' style={{ color: '#FFF' }}>Select A Rover</Typography>
+      </div>
+
+      <div className='rover2'>
+        {/* <Link to='/rover/opportunity'> */}
         <RoverButton
           roverName='Opportunity'
-          img='https://raw.githubusercontent.com/roverview/rover-fe-react/master/assets/images/curiosity-sq.jpg'
-          onClick={() => this.props.manifestFetch('opportunity')}
+          // img='../../../assets/images/curiosity-selfie.jpg'
+          onClick={() => manifestFetch('opportunity')}
           link='/rover/opportunity'
           id='rover2'
         />
       </div>
-    );
+    </div>;
   }
 }
 
