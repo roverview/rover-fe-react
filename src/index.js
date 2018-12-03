@@ -11,6 +11,18 @@ import { MuiThemeProvider } from 'material-ui/styles';
 
 const store = appCreateStore();
 
+if (process.env.NODE_ENV === 'development') {
+  const a11y = require('react-a11y').default;
+  a11y(React, ReactDOM, {
+    rules: {
+      'aria-role': 'warn',
+      'img-uses-alt': 'warn',
+      'img-redundant-alt': 'warn',
+      'onclick-uses-role': 'warn',
+    },
+  });
+}
+
 class Root extends Component {
   render() {
     return <main>

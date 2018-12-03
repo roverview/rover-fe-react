@@ -19,6 +19,7 @@ class Homepage extends Component {
           onClick={() => manifestFetch('curiosity')}
           link='/rover/curiosity'
           id='rover1'
+          alt='Curiosity Rover'
         />
       </div>
 
@@ -34,6 +35,7 @@ class Homepage extends Component {
           onClick={() => manifestFetch('opportunity')}
           link='/rover/opportunity'
           id='rover2'
+          alt='Opportunity Rover'
         />
       </div>
     </div>;
